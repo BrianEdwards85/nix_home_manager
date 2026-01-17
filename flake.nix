@@ -1,6 +1,5 @@
 {
-  description = "Home Manager configuration of bedwards";
-  #https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone
+  description = "Home Manager configuration of deck";
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
@@ -14,26 +13,19 @@
   outputs =
     { nixpkgs, home-manager, ... }:
     let
-      system = "aarch64-darwin";
+      system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      homeConfigurations."bedwards@deck" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."deck" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
         modules = [ ./home.nix ];
-        extraSpecialArgs = {
-          hostname = "deck";
-        };
-      };
-      homeConfigurations."bedwards@IT-USA-VF3086" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
 
-        modules = [ ./home.nix ];
-        extraSpecialArgs = {
-          hostname = "IT-USA-VF3086";
-          homeDir = "/Users/bedwards";
-        };
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
       };
     };
 }
