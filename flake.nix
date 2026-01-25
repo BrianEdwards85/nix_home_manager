@@ -13,19 +13,26 @@
   outputs =
     { nixpkgs, home-manager, ... }:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      # Helper function to create a home configuration
+      mkHome = { system, hostname, homeDir ? "/home/bedwards" }:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [ ./home.nix ];
+          extraSpecialArgs = {
+            inherit hostname homeDir;
+          };
+        };
     in
     {
-      homeConfigurations."deck" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+      homeConfigurations."bedwards@deck" = mkHome {
+        system = "x86_64-linux";
+        hostname = "deck";
+      };
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [ ./home.nix ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
+      homeConfigurations."bedwards@IT-USA-VF3086" = mkHome {
+        system = "aarch64-darwin";
+        hostname = "IT-USA-VF3086";
+        homeDir = "/Users/bedwards";
       };
     };
 }

@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, hostname, homeDir, ... }:
 
 {
 nixpkgs.config.allowUnfree = true; 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "deck";
-  home.homeDirectory = "/home/deck";
+  home.username = "bedwards";
+  home.homeDirectory = homeDir;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -19,41 +19,62 @@ nixpkgs.config.allowUnfree = true;
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-	bat
-	fzf
-	eza
-	btop
-	starship
-	zellij
-	nerd-fonts.droid-sans-mono
-	nerd-fonts.hack
-	qmk
-	vial
-	rustup
-	delta
-	byobu
-	zsh
-	vscode
-	terminator
+    neovim
+    rainfrog
+    #    dysk
+    bat
+    fzf
+    lazygit
+    lazydocker
+    ranger
+    kitty
+    btop
+    eza
+    starship
+    zellij
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.hack
+    nerd-fonts.ubuntu
+    nixfmt-rfc-style
+    # treefmt-nix
+    nixfmt-tree
+    jdt-language-server
+    lua-language-server
+    helix
+    emacs
+    delta
 
-	
-	
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+#    via
+#    vial
+    qmk
+#    qmk_hid
+#    keymapviz
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    esphome
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
+    rustup
+
+    # uv
+
+    #Ham
+#    fldigi
+#    flrig
+#    wsjtx
+#    gridtracker
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+  ]
+  ++ lib.optionals (hostname == "deck") [
+    gnupg
+#    via
+    vial
+    qmk_hid
+    keymapviz
+
+  ]
+  ++ lib.optionals (hostname == "IT-USA-VF3086") [
+    pinentry_mac
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
