@@ -34,7 +34,7 @@
       homeConfigurations."IT-USA-VF3086" = mkHome {
         system = "aarch64-darwin";
         hostname = "IT-USA-VF3086";
-        username = "bedwards"
+        username = "bedwards";
         homeDir = "/Users/bedwards";
       };
     };

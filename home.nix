@@ -15,7 +15,7 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "25.11"; # Please read the comment before changing.
+  home.stateVersion = "25.05"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -36,7 +36,6 @@
     nerd-fonts.droid-sans-mono
     nerd-fonts.hack
     nerd-fonts.ubuntu
-    nixfmt-rfc-style
     # treefmt-nix
     nixfmt-tree
     jdt-language-server
@@ -81,7 +80,7 @@
     enable = true;
   };
 
-  services.gpg-agent = {
+  services.gpg-agent = lib.mkIf (hostname == "IT-USA-VF3086") {
     enable = true;
     enableSshSupport = true;
     enableZshIntegration = true;
