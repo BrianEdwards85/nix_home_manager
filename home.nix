@@ -3,6 +3,8 @@
   pkgs,
   lib,
   homeDir,
+  hostname,
+  username,
   ...
 }:
 
@@ -10,7 +12,8 @@
   imports = [
     ./programs
   ];
-  home.username = "bedwards";
+  nixpkgs.config.allowUnfree = true; 
+  home.username = username;
   home.homeDirectory = homeDir;
 
   home.stateVersion = "25.05"; # Please read the comment before changing.
@@ -32,7 +35,6 @@
     nerd-fonts.droid-sans-mono
     nerd-fonts.hack
     nerd-fonts.ubuntu
-    nixfmt-rfc-style
     # treefmt-nix
     nixfmt-tree
     jdt-language-server
@@ -42,11 +44,7 @@
     pinentry_mac
     delta
 
-#    via
-#    vial
     qmk
-#    qmk_hid
-#    keymapviz
 
     esphome
 
@@ -62,6 +60,21 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+  ]
+  ++ lib.optionals (hostname == "deck") [
+    gnupg
+#    via
+    vial
+    qmk_hid
+    keymapviz
+
+    zsh
+    terminator
+    vscode
+
+  ]
+  ++ lib.optionals (hostname == "IT-USA-VF3086") [
+    pinentry_mac
   ];
 
   fonts.fontconfig.enable = true;
@@ -70,7 +83,7 @@
     enable = true;
   };
 
-  services.gpg-agent = {
+  services.gpg-agent = lib.mkIf (hostname == "IT-USA-VF3086") {
     enable = true;
     enableSshSupport = true;
     enableZshIntegration = true;

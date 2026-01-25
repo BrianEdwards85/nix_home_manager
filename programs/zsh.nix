@@ -28,7 +28,7 @@ with builtins;
 
     shellAliases = {
       cat = "bat";
-      hms = "home-manager switch --flake ~/.config/home-manager#$USER@$HOST";
+      hms = "home-manager switch --flake ~/.config/home-manager#$HOST";
       hmc = "code ~/.config/home-manager";
       s = "kitten ssh";
     };
