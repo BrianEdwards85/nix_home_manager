@@ -1,10 +1,11 @@
-{ config, pkgs, lib, hostname, homeDir, ... }:
+{ config, pkgs, lib, hostname, username, homeDir, ... }:
 
 {
-nixpkgs.config.allowUnfree = true; 
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "bedwards";
+  imports = [
+    ./programs
+  ];
+  nixpkgs.config.allowUnfree = true; 
+  home.username = username;
   home.homeDirectory = homeDir;
 
   # This value determines the Home Manager release that your configuration is
@@ -44,11 +45,7 @@ nixpkgs.config.allowUnfree = true;
     emacs
     delta
 
-#    via
-#    vial
     qmk
-#    qmk_hid
-#    keymapviz
 
     esphome
 
@@ -61,9 +58,6 @@ nixpkgs.config.allowUnfree = true;
 #    flrig
 #    wsjtx
 #    gridtracker
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
   ]
   ++ lib.optionals (hostname == "deck") [
     gnupg
@@ -72,24 +66,31 @@ nixpkgs.config.allowUnfree = true;
     qmk_hid
     keymapviz
 
+    zsh
+    terminator
+    vscode
+
   ]
   ++ lib.optionals (hostname == "IT-USA-VF3086") [
     pinentry_mac
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+  fonts.fontconfig.enable = true;
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+  programs.gpg = {
+    enable = true;
+  };
+
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+    enableZshIntegration = true;
+    pinentry.package = pkgs.pinentry_mac;
+  };
+
+  home.file = {
+    ".config/starship.toml".source = conf/starship.toml;
+    ".config/kitty/kitty.conf".source = conf/kitty.conf;
   };
 
   # Home Manager can also manage your environment variables through
@@ -109,7 +110,7 @@ nixpkgs.config.allowUnfree = true;
   #  /etc/profiles/per-user/deck/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "vim";
   };
 
   # Let Home Manager install and manage itself.
