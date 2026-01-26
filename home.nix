@@ -21,7 +21,7 @@
 
   fonts.fontconfig.enable = true;
 
-  programs.gpg = {
+  programs.gpg = lib.mkIf (hostname == "IT-USA-VF3086") {
     enable = true;
   };
 

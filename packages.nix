@@ -25,7 +25,6 @@
     nerd-fonts.hack             # Hack font with Nerd Font icons
     nerd-fonts.ubuntu           # Ubuntu font with Nerd Font icons
     nixfmt-tree                 # Nix code formatter (treefmt compatible)
-    pinentry_mac                # macOS PIN entry dialog for GPG
     qmk                         # Quantum Mechanical Keyboard firmware toolkit
     rainfrog                    # Database management TUI for Postgres
     ranger                      # Console file manager with vi keybindings
