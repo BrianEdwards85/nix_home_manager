@@ -25,7 +25,7 @@
         };
     in
     {
-      homeConfigurations."deck" = mkHome {
+      homeConfigurations."steamdeck" = mkHome {
         system = "x86_64-linux";
         hostname = "deck";
         username = "deck";
