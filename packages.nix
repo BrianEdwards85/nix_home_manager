@@ -15,6 +15,7 @@
     eza                         # Modern replacement for ls
     fzf                         # Fuzzy finder for command line
     helix                       # Modal text editor inspired by Vim/Kakoune
+    httpie                      # Command line HTTP client whose goal is to make CLI human-friendly
     jdt-language-server         # Java language server for IDE features
     kitty                       # GPU-accelerated terminal emulator
     lazydocker                  # Terminal UI for Docker management
@@ -50,10 +51,12 @@
     vial                        # Open-source keyboard configurator
     vscode                      # Visual Studio Code editor
     zsh                         # Z shell
-
+    httpie-desktop              # Cross-platform API testing client for humans. Painlessly test REST, GraphQL, and HTTP APIs
+    libnotify                   # Library that sends desktop notifications to a notification daemon
     # via                       # Keyboard configurator (proprietary)
   ]
   ++ lib.optionals (hostname == "IT-USA-VF3086") [
     pinentry_mac                # macOS PIN entry dialog for GPG
+    terminal-notifier           # 
   ];
 }

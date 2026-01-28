@@ -14,6 +14,15 @@ with builtins;
         "eza"
         "macos"
         "vscode"
+        "fzf"
+        "ssh"
+        "starship"
+        "kitty"
+        "wd" #https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/wd
+        "zsh-interactive-cd"
+
+        # jsontools
+        # vscode
       ];
       theme = ""; #"bureau";
     };
@@ -33,13 +42,13 @@ with builtins;
       s = "kitten ssh";
     };
 
-    initContent =
-      if hostname == "IT-USA-VF3086" then
-         lib.mkAfter (builtins.readFile ../conf/zshrc)
-      else 
-        lib.mkAfter ''
-          # For host ${hostname}
-          eval "''$(starship init zsh)"
-        '';
+    initContent = lib.mkMerge [
+      # Shared functions for all hosts
+      (lib.mkAfter (builtins.readFile ../conf/git-functions.sh))
+
+      # Host-specific config
+      (lib.mkIf (hostname == "IT-USA-VF3086")
+        (lib.mkAfter (builtins.readFile ../conf/zshrc)))
+    ];
   };
 }
