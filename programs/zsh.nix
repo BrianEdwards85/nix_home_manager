@@ -49,6 +49,9 @@ with builtins;
       # Host-specific config
       (lib.mkIf (hostname == "IT-USA-VF3086")
         (lib.mkAfter (builtins.readFile ../conf/zshrc)))
+
+      (lib.mkIf (hostname == "IT-USA-VF3086" || hostname == "bedwards")
+        (lib.mkAfter (builtins.readFile ../conf/indeed.zsh)))
     ];
   };
 }
