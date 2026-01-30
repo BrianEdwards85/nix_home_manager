@@ -8,14 +8,12 @@
       "workbench.colorTheme" = "Cobalt2";
     };
     profiles.default.extensions = with pkgs.vscode-extensions; [
-#      lukevanlukevan.qmk-action-button
       esbenp.prettier-vscode
       pkief.material-icon-theme
-      vscodevim.vim
     ]
-# nix store prefetch-file https://marketplace.visualstudio.com/_apis/public/gallery/publishers/lukevan/vsextensions/qmk-action-button/0.1.5/vspackage
+#  nix store prefetch-file https://marketplace.visualstudio.com/_apis/public/gallery/publishers/lukevan/vsextensions/qmk-action-button/0.1.5/vspackage
 #    ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-#      {
+#  GGG    {
 #        name = "";
 #        publisher = "";
 #        version = "";
