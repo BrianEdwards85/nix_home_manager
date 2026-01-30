@@ -25,6 +25,14 @@
         };
     in
     {
+
+      homeConfigurations."bedwards" = mkHome {
+        system = "x86_64-linux";
+        hostname = "bedwards";
+        username = "bedwards";
+        homeDir = "/home/bedwards";
+      };
+
       homeConfigurations."steamdeck" = mkHome {
         system = "x86_64-linux";
         hostname = "deck";

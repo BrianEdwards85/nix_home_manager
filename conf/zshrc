@@ -3,11 +3,6 @@
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-if [ -e "${HOME}/.indeed-kube-profile" ]; then
-    . "${HOME}/.indeed-kube-profile"
-fi
-eval "$(starship init zsh)"
-
 # BEGIN env Setup -- Managed by Ansible DO NOT EDIT.
 
 # Setup INDEED_ENV_DIR earlier.

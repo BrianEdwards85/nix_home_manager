@@ -32,19 +32,19 @@
     pinentry.package = pkgs.pinentry_mac;
   };
 
-  home.file = {
-    ".config/starship.toml".source = conf/starship.toml;
-    ".config/kitty/kitty.conf".source = conf/kitty.conf;
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
+home.file = {
+  ".config/starship.toml".source = conf/starship.toml;
+  ".config/kitty/kitty.conf".source = conf/kitty.conf;
+  ".byobu/.tmux.conf".source = conf/tmux.conf;
+} // lib.optionalAttrs (hostname == "bedwards") {
+  ".zprofile".source = conf/zprofile;
+};
 
   home.sessionVariables = {
     EDITOR = "vim";
   };
+
+  home.shell.enableZshIntegration = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
