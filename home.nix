@@ -35,7 +35,7 @@
 home.file = {
   ".config/starship.toml".source = conf/starship.toml;
   ".config/kitty/kitty.conf".source = conf/kitty.conf;
-  ".byobu/.tmux.conf".source = "conf/tmux.conf";
+  ".byobu/.tmux.conf".source = conf/tmux.conf;
 } // lib.optionalAttrs (hostname == "bedwards") {
   ".zprofile".source = conf/zprofile;
 };
