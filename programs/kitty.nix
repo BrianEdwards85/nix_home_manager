@@ -12,6 +12,7 @@
     settings = {
       tab_bar_style = "slant";
       background_opacity = "0.85";
+      copy_on_select = "clipboard";
     };
   };
 }
