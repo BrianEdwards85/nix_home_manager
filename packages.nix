@@ -14,6 +14,8 @@
     emacs                       # Extensible text editor
     eza                         # Modern replacement for ls
     fzf                         # Fuzzy finder for command line
+    git                         # Distributed version control system
+    git-worktree-switcher       # Tool to easily switch between git worktrees
     helix                       # Modal text editor inspired by Vim/Kakoune
     httpie                      # Command line HTTP client whose goal is to make CLI human-friendly
     jdt-language-server         # Java language server for IDE features
@@ -60,5 +62,9 @@
   ++ lib.optionals (hostname == "IT-USA-VF3086") [
     pinentry_mac                # macOS PIN entry dialog for GPG
     terminal-notifier           # 
+  ]
+  ++ lib.optionals (hostname == "bedwards") [
+    unixtools.netstat           # Network statistics
+    unixtools.net-tools         # Network utilities like ifconfig, netstat, route, etc.
   ];
 }

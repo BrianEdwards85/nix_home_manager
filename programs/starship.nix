@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   programs.starship = {
     enable = true;
@@ -32,7 +32,7 @@
         "$time"
         "$status"
         "[ ](fg:#1d2230)"
-        "$character"
+        "\n$character"
       ];
 
       directory = {
