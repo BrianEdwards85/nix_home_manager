@@ -5,13 +5,17 @@
   homeDir,
   hostname,
   username,
+  features,
   ...
 }:
 
+let
+  hasFeature = feature: builtins.elem feature features;
+in
 {
   imports = [
     ./programs
-    ./packages.nix
+    ./packages
   ];
   nixpkgs.config.allowUnfree = true; 
   home.username = username;

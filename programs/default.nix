@@ -5,6 +5,7 @@
     ./kitty.nix
     ./starship.nix
     ./zsh.nix
+    ./lazygit.nix
   ] ++ lib.optionals (hostname == "deck") [
     ./vscode.nix
   ];

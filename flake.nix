@@ -15,12 +15,12 @@
     { nixpkgs, home-manager, ... }:
     let
       # Helper function to create a home configuration
-      mkHome = { system, hostname, homeDir, username }:
+      mkHome = { system, hostname, homeDir, username, features }:
         home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [ ./home.nix ];
           extraSpecialArgs = {
-            inherit hostname homeDir username;
+            inherit hostname homeDir username features;
           };
         };
     in
@@ -31,6 +31,7 @@
         hostname = "bedwards";
         username = "bedwards";
         homeDir = "/home/bedwards";
+        features = [ "indeed" "dev" ];
       };
 
       homeConfigurations."steamdeck" = mkHome {
@@ -38,6 +39,7 @@
         hostname = "deck";
         username = "deck";
         homeDir = "/home/deck";
+        features = [ "dev" "gui" "ham", "home" ];
       };
 
       homeConfigurations."IT-USA-VF3086" = mkHome {
@@ -45,6 +47,7 @@
         hostname = "IT-USA-VF3086";
         username = "bedwards";
         homeDir = "/Users/bedwards";
+        features = [ "indeed" "dev" "gui" "ham", "home" ];
       };
     };
 }
