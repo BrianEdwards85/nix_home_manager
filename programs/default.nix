@@ -1,4 +1,8 @@
-{ lib, hostname, ... }:
+{ lib, hostname, features, ... }:
+
+let
+  hasFeature = f: builtins.elem f features;
+in
 {
   imports = [
     ./eza.nix
@@ -6,7 +10,7 @@
     ./starship.nix
     ./zsh.nix
     ./lazygit.nix
-  ] ++ lib.optionals (hostname == "deck") [
+#  ] ++ lib.optionals (hasFeature == "gui") [
     ./vscode.nix
   ];
 }

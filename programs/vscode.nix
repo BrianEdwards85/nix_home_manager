@@ -6,10 +6,28 @@
     profiles.default.userSettings = {
       "workbench.iconTheme" = "material-icon-theme";
       "workbench.colorTheme" = "Cobalt2";
+      "editor.fontFamily" =  "'DroidSansM Nerd Font', HackNerdFont, Menlo, Monaco, 'Courier New', monospace";
+      "files.autoSave" = "onFocusChange";
+      "workbench.editor.enablePreview" =  false;
+      "workbench.editor.enablePreviewFromQuickOpen" = false;
     };
     profiles.default.extensions = with pkgs.vscode-extensions; [
       esbenp.prettier-vscode
       pkief.material-icon-theme
+      vscodevim.vim
+#      docker.docker
+      ms-python.python
+      ms-python.debugpy
+      ms-vscode-remote.remote-ssh
+      ms-vscode-remote.vscode-remote-extensionpack
+      ms-vscode-remote.remote-ssh-edit
+      ms-vscode-remote.remote-containers
+      ms-azuretools.vscode-docker
+      ms-azuretools.vscode-containers
+      redhat.java
+      vscjava.vscode-gradle
+
+      #asvetliakov.vscode-neovim 
     ]
 #  nix store prefetch-file https://marketplace.visualstudio.com/_apis/public/gallery/publishers/lukevan/vsextensions/qmk-action-button/0.1.5/vspackage
 #    ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [

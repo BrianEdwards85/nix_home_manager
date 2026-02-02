@@ -8,6 +8,7 @@
     nerd-fonts.hack             # Hack font with Nerd Font icons
     nerd-fonts.ubuntu           # Ubuntu font with Nerd Font icons
     qmk                         # Quantum Mechanical Keyboard firmware toolkit
+    vscode                      # 
   ]
   ++ lib.optionals pkgs.stdenv.isDarwin [
     pinentry_mac                # macOS PIN entry dialog for GPG
