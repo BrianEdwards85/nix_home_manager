@@ -10,6 +10,7 @@
       "files.autoSave" = "onFocusChange";
       "workbench.editor.enablePreview" =  false;
       "workbench.editor.enablePreviewFromQuickOpen" = false;
+      "git.confirmSync" = false;
     };
     profiles.default.extensions = with pkgs.vscode-extensions; [
       esbenp.prettier-vscode

@@ -7,10 +7,13 @@
     btop                        # Resource monitor (CPU, memory, disks)
     byobu                       # Text-based window manager and terminal multiplexer
     delta                       # Syntax-highlighting pager for git diffs
+    emacs                       # Extensible text editor
     eza                         # Modern replacement for ls
     fzf                         # Fuzzy finder for command line
     git                         # Distributed version control system
     git-worktree-switcher       # Tool to easily switch between git worktrees
+    helix                       # Modal text editor inspired by Vim/Kakoune
+    neovim                      # Hyperextensible Vim-based text editor
     ranger                      # Console file manager with vi keybindings
     starship                    # Cross-shell customizable prompt
     zellij                      # Terminal workspace and multiplexer
