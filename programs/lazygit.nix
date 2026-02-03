@@ -8,10 +8,12 @@
           colorArg = "always";
           pager = "delta --dark --paging=never";
         };
-        commitPrefix = {
-          pattern = "^\\w+\\/(\\w+-\\w+).*";
-          replace = "$1: ";
-        };
+        commitPrefix = [
+          {
+            pattern = "^\\w+\\/(\\w+-\\w+).*";
+            replace = "$1: ";
+          }
+        ];
       };
     };
   };

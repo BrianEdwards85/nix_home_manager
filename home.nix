@@ -44,7 +44,7 @@ home.file = {
 };
 
   home.sessionVariables = {
-    EDITOR = "vim";
+    EDITOR = "nvim";
   };
 
   home.shell.enableZshIntegration = true;
