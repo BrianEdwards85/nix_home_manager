@@ -18,5 +18,8 @@
     starship                    # Cross-shell customizable prompt
     wezterm                     # GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust
     zellij                      # Terminal workspace and multiplexer
+  ]
+  ++ lib.optionals pkgs.stdenv.isLinux [
+    unixtools.net-tools         # Network utilities like ifconfig, netstat, route, etc.
   ];
 }
