@@ -3,6 +3,8 @@
 
 {
   home.packages = with pkgs; [
+#    blender
+    gimp
     kitty                       # GPU-accelerated terminal emulator
     nerd-fonts.droid-sans-mono  # Droid Sans Mono with Nerd Font icons
     nerd-fonts.hack             # Hack font with Nerd Font icons
@@ -13,6 +15,7 @@
   ++ lib.optionals pkgs.stdenv.isDarwin [
     pinentry_mac                # macOS PIN entry dialog for GPG
     terminal-notifier           # macOS notification utility
+    rectangle
   ]
   ++ lib.optionals pkgs.stdenv.isLinux [
     gnupg                       # GNU Privacy Guard encryption

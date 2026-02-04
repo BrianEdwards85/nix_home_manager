@@ -38,8 +38,9 @@ with builtins;
     shellAliases = {
       cat = "bat";
       hms = "home-manager switch --flake ~/.config/home-manager#$HOST";
-      hmc = "code ~/.config/home-manager";
+      hmc = "nvim ~/.config/home-manager";
       s = "kitten ssh";
+      vim = "nvim";
     };
 
     initContent = lib.mkMerge [
