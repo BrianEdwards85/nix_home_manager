@@ -14,12 +14,42 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.DetachDomain("CurrentPaneDomain"),
 	},
+	{
+		key = "LeftArrow",
+		mods = "CMD",
+		action = wezterm.action.ActivateTabRelative(-1),
+	},
+	{
+		key = "RightArrow",
+		mods = "CMD",
+		action = wezterm.action.ActivateTabRelative(1),
+	},
+	{
+		key = "LeftArrow",
+		mods = "CMD|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Left"),
+	},
+	{
+		key = "RightArrow",
+		mods = "CMD|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Right"),
+	},
+	{
+		key = "UpArrow",
+		mods = "CMD|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Up"),
+	},
+	{
+		key = "DownArrow",
+		mods = "CMD|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Down"),
+	},
 }
 
 config.color_scheme = "Cobalt2"
 config.tab_bar_at_bottom = true
 
-config.window_background_opacity = 0.90
+config.window_background_opacity = 0.85
 
 bar.apply_to_config(config)
 
