@@ -9,7 +9,7 @@
         "[░▒▓](#a3aed2)"
         "$os"
         "[](bg:#769ff0 fg:#a3aed2)"
-	"$hostname"
+      	"$hostname"
         "$directory"
         "[](fg:#769ff0 bg:#394260)"
         "$git_branch"
@@ -38,10 +38,10 @@
 
       hostname = {
         style = "fg:#e3e5e5 bg:#769ff0";
-	aliases = {
-	  "bedwards" = "CVM";	
-	};
-	format = "[$ssh_symbol$hostname]($style)";
+      	aliases = {
+      	  "bedwards" = "CVM";	
+      	};
+      	format = "[$ssh_symbol$hostname]($style)";
       };
 
       directory = {
@@ -51,7 +51,7 @@
         format = "[ $path ]($style)[$read_only]($read_only_style)";
         truncation_length = 4;
         truncation_symbol = "…/";
-        home_symbol = "";
+        home_symbol = " ";
         substitutions = {
           "Documents" = "󰈙 ";
           "Downloads" = " ";
