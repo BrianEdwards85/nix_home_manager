@@ -19,7 +19,7 @@ config.keys = {
 config.color_scheme = "Cobalt2"
 config.tab_bar_at_bottom = true
 
-config.window_background_opacity = 0.70
+config.window_background_opacity = 0.90
 
 bar.apply_to_config(config)
 

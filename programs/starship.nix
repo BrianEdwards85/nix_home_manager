@@ -51,7 +51,7 @@
         format = "[ $path ]($style)[$read_only]($read_only_style)";
         truncation_length = 4;
         truncation_symbol = "…/";
-        home_symbol = " ";
+        home_symbol = "";
         substitutions = {
           "Documents" = "󰈙 ";
           "Downloads" = " ";
@@ -117,6 +117,7 @@
         format = "[$symbol](bg:#a3aed2 fg:#090c0c)($style)";
         symbols = {
           Macos = " ";
+          Ubuntu = " "
         };
       };
     };
