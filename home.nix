@@ -39,8 +39,8 @@ in
 home.file = {
   ".byobu/.tmux.conf".source = conf/tmux.conf;
   ".config/nvim".source = conf/nvim;
-} // lib.optionalAttrs (hostname == "bedwards") {
-  ".zprofile".source = conf/zprofile;
+#} // lib.optionalAttrs (hostname == "bedwards") {
+#  ".zprofile".source = conf/zprofile;
 };
 
   home.sessionVariables = {

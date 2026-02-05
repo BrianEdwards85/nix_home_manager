@@ -9,6 +9,7 @@
         "[░▒▓](#a3aed2)"
         "$os"
         "[](bg:#769ff0 fg:#a3aed2)"
+	"$hostname"
         "$directory"
         "[](fg:#769ff0 bg:#394260)"
         "$git_branch"
@@ -34,6 +35,14 @@
         "[ ](fg:#1d2230)"
         "\n$character"
       ];
+
+      hostname = {
+        style = "fg:#e3e5e5 bg:#769ff0";
+	aliases = {
+	  "bedwards" = "CVM";	
+	};
+	format = "[$ssh_symbol$hostname]($style)";
+      };
 
       directory = {
         style = "fg:#e3e5e5 bg:#769ff0";
