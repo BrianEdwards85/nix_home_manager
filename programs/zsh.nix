@@ -42,6 +42,7 @@ with builtins;
       s = "kitten ssh";
       vim = "nvim";
     };
+    envExtra = "export PATH=~/.nix-profile/bin:$PATH";
 
     initContent = lib.mkMerge [
       # Shared functions for all hosts
