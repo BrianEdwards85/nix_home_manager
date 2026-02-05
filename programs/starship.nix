@@ -117,7 +117,7 @@
         format = "[$symbol](bg:#a3aed2 fg:#090c0c)($style)";
         symbols = {
           Macos = " ";
-          Ubuntu = " "
+          Ubuntu = " ";
         };
       };
     };
