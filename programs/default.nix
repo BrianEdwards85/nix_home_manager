@@ -12,5 +12,6 @@ in
     ./lazygit.nix
 #  ] ++ lib.optionals (hasFeature == "gui") [
     ./vscode.nix
+    ./wezterm.nix
   ];
 }
