@@ -43,7 +43,7 @@ home.file = {
     recursive = true;
   };
 # } // lib.optionalAttrs (hostname == "bedwards") {
-  ".zprofile".source = conf/zprofile;
+#  ".zprofile".source = conf/zprofile;
 };
 
   home.sessionVariables = {
