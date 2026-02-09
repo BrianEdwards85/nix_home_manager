@@ -4,10 +4,10 @@
     enable = true;
     settings = {
       git = {
-        pagers = {
+        pagers = [{
           colorArg = "always";
           pager = "delta --dark --paging=never";
-        };
+        }];
         commitPrefix = [
           {
             pattern = "^\\w+\\/(\\w+-\\w+).*";
