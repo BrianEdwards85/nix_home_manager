@@ -41,6 +41,7 @@ with builtins;
       hmc = "nvim ~/.config/home-manager";
       s = "kitten ssh";
       vim = "nvim";
+      gg = "lazygit";
     };
     envExtra = "export PATH=~/.nix-profile/bin:$PATH";
 
