@@ -9,6 +9,7 @@
     nerd-fonts.droid-sans-mono  # Droid Sans Mono with Nerd Font icons
     nerd-fonts.hack             # Hack font with Nerd Font icons
     nerd-fonts.ubuntu           # Ubuntu font with Nerd Font icons
+    obsidian                    # Powerful knowledge base that works on top of a local folder of plain text Markdown files
     qmk                         # Quantum Mechanical Keyboard firmware toolkit
     vscode                      # 
   ]

@@ -7,10 +7,10 @@ return {
     lazy = false,
     "tjdevries/colorbuddy.nvim",
   },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "cobalt2",
-    },
-  },
+  --  {
+  --    "LazyVim/LazyVim",
+  --    opts = {
+  --      colorscheme = "cobalt2",
+  --    },
+  --  },
 }

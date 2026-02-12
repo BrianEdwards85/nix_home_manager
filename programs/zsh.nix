@@ -42,6 +42,7 @@ with builtins;
       s = "kitten ssh";
       vim = "nvim";
       gg = "lazygit";
+      cc = "cursor .";
     };
     envExtra = "export PATH=~/.nix-profile/bin:$PATH";
 

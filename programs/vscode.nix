@@ -5,7 +5,8 @@
     enable = true;
     profiles.default.userSettings = {
       "workbench.iconTheme" = "material-icon-theme";
-      "workbench.colorTheme" = "Cobalt2";
+      "workbench.colorTheme" = "Tokyo Night Storm";
+#      "workbench.colorTheme" = "Cobalt2";
       "editor.fontFamily" =  "'DroidSansM Nerd Font', HackNerdFont, Menlo, Monaco, 'Courier New', monospace";
       "files.autoSave" = "onFocusChange";
       "workbench.editor.enablePreview" =  false;
@@ -30,6 +31,8 @@
 
       #asvetliakov.vscode-neovim 
     ]
+    # https://nixos.wiki/wiki/Visual_Studio_Code#Extensions
+    # nix store prefetch-file https://marketplace.visualstudio.com/_apis/public/gallery/publishers/<publisher>/vsextensions/<name>/<version>/vspackage
 #  nix store prefetch-file https://marketplace.visualstudio.com/_apis/public/gallery/publishers/lukevan/vsextensions/qmk-action-button/0.1.5/vspackage
 #    ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
 #  GGG    {
@@ -53,6 +56,14 @@
         publisher = "jnoortheen";
         version = "0.5.5";
         sha256 = "epdEMPAkSo0IXsd+ozicI8bjPPquDKIzB3ONRUYWwn8=";
+      }
+    ]
+    ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        name = "tokyo-night";
+        publisher = "enkia";
+        version = "1.1.2";
+        sha256 = "oW0bkLKimpcjzxTb/yjShagjyVTUFEg198oPbY5J2hM=";
       }
     ]
     ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
