@@ -8,6 +8,16 @@ config.font_size = 14.0
 config.mux_enable_ssh_agent = false
 config.default_ssh_auth_sock = string.format("%s/.gnupg/S.gpg-agent.ssh", wezterm.home_dir)
 
+config.ssh_domains = {
+	{
+		name = "cvm",
+		remote_address = "bedwards.cvm.indeed.net",
+		ssh_option = {
+			ForwardAgent = "yes",
+		},
+	},
+}
+
 config.keys = {
 	{
 		key = "d",

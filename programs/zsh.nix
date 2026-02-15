@@ -49,6 +49,7 @@ with builtins;
     initContent = lib.mkMerge [
       # Shared functions for all hosts
       (lib.mkAfter (builtins.readFile ../conf/git-functions.sh))
+      (lib.mkAfter (builtins.readFile ../conf/fzf_tokyonight_storm.sh))
 
       # Host-specific config
       (lib.mkIf (hostname == "IT-USA-VF3086")

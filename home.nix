@@ -42,6 +42,7 @@ home.file = {
     source = conf/nvim;
     recursive = true;
   };
+  ".config/eza/theme.yml".source = conf/eza_tokyonight_storm.yml;
 # } // lib.optionalAttrs (hostname == "bedwards") {
 #  ".zprofile".source = conf/zprofile;
 };
