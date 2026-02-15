@@ -46,7 +46,7 @@ config.keys = {
 	},
 }
 
-config.color_scheme = "Cobalt2"
+config.color_scheme = "tokyonight-storm"
 config.tab_bar_at_bottom = true
 
 config.window_background_opacity = 0.85

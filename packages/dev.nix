@@ -12,5 +12,6 @@
     nixfmt-tree                 # Nix code formatter (treefmt compatible)
     rainfrog                    # Database management TUI for Postgres
     rustup                      # Rust toolchain installer and manager
+    uv                          # Extremely fast Python package installer and resolver, written in Rust
   ];
 }

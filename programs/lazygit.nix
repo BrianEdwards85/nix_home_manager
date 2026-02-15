@@ -3,6 +3,12 @@
   programs.lazygit = {
     enable = true;
     settings = {
+      gui = {
+        nerdFontsVersion = "3";
+      };
+      services = {
+        "code.corp.indeed.com" = "gitlab:code.corp.indeed.com";
+      };
       git = {
         pagers = {
           colorArg = "always";
