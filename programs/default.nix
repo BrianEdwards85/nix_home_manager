@@ -10,6 +10,7 @@ in
     ./starship.nix
     ./zsh.nix
     ./lazygit.nix
+    ./bat.nix
 #  ] ++ lib.optionals (hasFeature == "gui") [
     ./vscode.nix
     ./wezterm.nix
