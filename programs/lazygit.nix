@@ -25,11 +25,11 @@
       git = {
         paging = {
           colorArg = "always";
-          pager = "delta --dark --paging=never";
+          pager = "delta --dark --paging=never --syntax-theme=tokyonight_storm";
         };
         pagers = {
           colorArg = "always";
-          pager = "delta --dark --paging=never";
+          pager = "delta --dark --paging=never --syntax-theme=tokyonight_storm";
         };
         commitPrefix = [
           {

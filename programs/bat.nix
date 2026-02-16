@@ -6,10 +6,10 @@
     enable = true;
     config = {
         theme = "tokyonight_storm";
-      }
+    };
     themes = {
       tokyonight_storm = {
-        src = "config/bat_tokyonight_storm.tmTheme";
+        src = ../conf/bat_tokyonight_storm.tmTheme;
       };
     };
   };
