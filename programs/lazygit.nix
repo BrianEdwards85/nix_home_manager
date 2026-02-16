@@ -23,6 +23,10 @@
         "code.corp.indeed.com" = "gitlab:code.corp.indeed.com";
       };
       git = {
+        paging = {
+          colorArg = "always";
+          pager = "delta --dark --paging=never";
+        };
         pagers = {
           colorArg = "always";
           pager = "delta --dark --paging=never";
