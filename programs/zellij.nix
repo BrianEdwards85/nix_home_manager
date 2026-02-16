@@ -4,10 +4,11 @@
   programs.zellij = {
     enable = true;
     enableZshIntegration = true;
-#    attachExistingSession = true;
     exitShellOnExit = true;
     settings = {
       show_startup_tips = false;
+      session_name = "default";
+      attach_to_session = true;
       # Define the theme colors
       themes = {
         tokyonight_storm = {
@@ -34,6 +35,62 @@
           rounded_corners = true;
         };
       };
+      keybinds = {
+      shared_except = {
+        _args = [ "locked" ];
+        _children = [
+          {
+            bind = {
+              _args = [ "Alt Left" ];
+              MessagePlugin = {
+                _args = [ "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" ];
+                name = "move_focus_or_tab";
+                payload = "left";
+                move_mod = "alt";
+                use_arrow_keys = "true";
+              };
+            };
+          }
+          {
+            bind = {
+              _args = [ "Alt Down" ];
+              MessagePlugin = {
+                _args = [ "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" ];
+                name = "move_focus";
+                payload = "down";
+                move_mod = "alt";
+                use_arrow_keys = "true";
+              };
+            };
+          }
+          {
+            bind = {
+              _args = [ "Alt Up" ];
+              MessagePlugin = {
+                _args = [ "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" ];
+                name = "move_focus";
+                payload = "up";
+                move_mod = "alt";
+                use_arrow_keys = "true";
+              };
+            };
+          }
+          {
+            bind = {
+              _args = [ "Alt Right" ];
+              MessagePlugin = {
+                _args = [ "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" ];
+                name = "move_focus_or_tab";
+                payload = "right";
+                move_mod = "alt";
+                use_arrow_keys = "true";
+              };
+            };
+          }
+        ];
+      };
     };
+    };
+#    extraConfig = "keybinds {}"; # builtins.readFile ../conf/zellij_keybinds.kdl;
   };
 }

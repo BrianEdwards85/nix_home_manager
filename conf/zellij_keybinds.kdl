@@ -1,0 +1,24 @@
+keybinds {
+    shared_except "locked" {
+        bind "Alt Left" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm" {
+                name "move_focus"; payload "left";
+            };
+        }
+        bind "Alt Down" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm" {
+                name "move_focus"; payload "down";
+            };
+        }
+        bind "Alt Up" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm" {
+                name "move_focus"; payload "up";
+            };
+        }
+        bind "Alt Right" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm" {
+                name "move_focus"; payload "right";
+            };
+        }
+    }
+}
