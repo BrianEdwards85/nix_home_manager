@@ -5,6 +5,7 @@ let
 in
 {
   imports = [
+    ./alacritty.nix
     ./eza.nix
     ./kitty.nix
     ./starship.nix
@@ -14,5 +15,6 @@ in
 #  ] ++ lib.optionals (hasFeature == "gui") [
     ./vscode.nix
     ./wezterm.nix
+    ./zellij.nix
   ];
 }
