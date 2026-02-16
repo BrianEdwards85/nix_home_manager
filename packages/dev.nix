@@ -10,6 +10,7 @@
     lazysql                     # Simple TUI for MySQL/MariaDB databases
     lua-language-server         # Lua language server for IDE features
     nixfmt-tree                 # Nix code formatter (treefmt compatible)
+    prettier                    # Code formatter
     rainfrog                    # Database management TUI for Postgres
     rustup                      # Rust toolchain installer and manager
     uv                          # Extremely fast Python package installer and resolver, written in Rust

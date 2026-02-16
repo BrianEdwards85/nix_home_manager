@@ -20,6 +20,11 @@ config.ssh_domains = {
 
 config.keys = {
 	{
+		key = "c",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.AttachDomain("cvm"),
+	},
+	{
 		key = "d",
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.DetachDomain("CurrentPaneDomain"),
