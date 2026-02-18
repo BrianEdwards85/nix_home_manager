@@ -38,6 +38,9 @@
           }
         ];
       };
+      os = {
+        openLink = "echo {{link}} | pbcopy";
+      };
     };
   };
 }

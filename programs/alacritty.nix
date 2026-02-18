@@ -4,6 +4,12 @@
   programs.alacritty = {
     enable = true;
     settings = {
+      keyboard.bindings = [
+        # Disable Cmd+T default (new tab) and send Ctrl+Shift+T to Zellij
+        { key = "T"; mods = "Command"; chars = "\\u001b[84;6u"; }
+        # Send Cmd+P as Ctrl+Shift+P to Zellij
+        { key = "P"; mods = "Command"; chars = "\\u001b[80;6u"; }
+      ];
       font = {
         normal = {
           family = "DroidSansM Nerd Font";

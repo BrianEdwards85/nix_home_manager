@@ -43,6 +43,7 @@ home.file = {
     recursive = true;
   };
   ".config/eza/theme.yml".source = conf/eza_tokyonight_storm.yml;
+  ".config/git/delta".source = conf/git_delta.conf;
 #  ".config/bat/themes/tokyonight_storm.tmTheme" = {
 #      source = conf/bat_tokyonight_storm.tmTheme;
 #      onChange = "bat cache --build";

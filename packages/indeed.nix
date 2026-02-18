@@ -4,5 +4,6 @@
 {
   home.packages = with pkgs; [
     # Add Indeed-specific packages here
+#    claude-code
   ];
 }

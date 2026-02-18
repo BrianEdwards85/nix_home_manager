@@ -4,7 +4,7 @@
   programs.zellij = {
     enable = true;
     enableZshIntegration = true;
-    exitShellOnExit = true;
+#    exitShellOnExit = true;
     settings = {
       show_startup_tips = false;
       session_name = "default";
@@ -39,6 +39,18 @@
       shared_except = {
         _args = [ "locked" ];
         _children = [
+          {
+            bind = {
+              _args = [ "Ctrl Shift t" ];
+              NewTab = {};
+            };
+          }
+          {
+            bind = {
+              _args = [ "Ctrl Shift p" ];
+              NewPane = {};
+            };
+          }
           {
             bind = {
               _args = [ "Alt Left" ];

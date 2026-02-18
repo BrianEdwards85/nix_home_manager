@@ -43,6 +43,7 @@ with builtins;
       vim = "nvim";
       gg = "lazygit";
       cc = "cursor .";
+      cvm = "alacritty msg create-window --hold -e zsh -c 'ssh bedwards.cvm.indeed.net'";
     };
     envExtra = "export PATH=~/.nix-profile/bin:$PATH";
 
