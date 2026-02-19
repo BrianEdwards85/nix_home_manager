@@ -27,10 +27,12 @@
           colorArg = "always";
           pager = "delta --dark --paging=never --syntax-theme=tokyonight_storm";
         };
-        pagers = {
-          colorArg = "always";
-          pager = "delta --dark --paging=never --syntax-theme=tokyonight_storm";
-        };
+        pagers = [
+          {
+            colorArg = "always";
+            pager = "delta --dark --paging=never --syntax-theme=tokyonight_storm";
+          }
+        ];
         commitPrefix = [
           {
             pattern = "^\\w+\\/(\\w+-\\w+).*";

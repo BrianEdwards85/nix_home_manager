@@ -5,7 +5,7 @@
   home.packages = with pkgs; [
 #    blender
     alacritty                   # Cross-platform, GPU-accelerated terminal emulator
-    gimp
+#    gimp
     kitty                       # GPU-accelerated terminal emulator
     nerd-fonts.droid-sans-mono  # Droid Sans Mono with Nerd Font icons
     nerd-fonts.hack             # Hack font with Nerd Font icons

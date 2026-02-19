@@ -4,6 +4,9 @@
   programs.alacritty = {
     enable = true;
     settings = {
+      mouse.bindings = [
+        { mouse = "Middle"; action = "Paste"; }
+      ];
       keyboard.bindings = [
         # Disable Cmd+T default (new tab) and send Ctrl+Shift+T to Zellij
         { key = "T"; mods = "Command"; chars = "\\u001b[84;6u"; }
