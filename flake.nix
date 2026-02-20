@@ -26,6 +26,14 @@
     in
     {
 
+      homeConfigurations."wintermute" = mkHome {
+        system = "x86_64-linux";
+        hostname = "bedwards";
+        username = "bedwards";
+        homeDir = "/home/bedwards";
+        features = [ "dev" ];
+      };
+
       homeConfigurations."bedwards" = mkHome {
         system = "x86_64-linux";
         hostname = "bedwards";
