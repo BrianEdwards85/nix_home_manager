@@ -9,7 +9,7 @@ in
     ./eza.nix
     ./kitty.nix
     ./starship.nix
-    ./zsh.nix
+    ./fish.nix
     ./lazygit.nix
     ./bat.nix
 #  ] ++ lib.optionals (hasFeature == "gui") [

@@ -5,7 +5,7 @@
     enable = true;
     git = true;
     icons = "always";
-    enableZshIntegration = true;
+    enableFishIntegration = true;
     extraOptions = [
       "--group-directories-first"
       "--header"
