@@ -26,22 +26,21 @@
       }
       {
         name = "plugin-git";
-        src = pkgs.fetchFromGitHub {
-          owner = "jhillyerd";
-          repo = "plugin-git";
-          rev = "main";
-          hash = lib.fakeHash;
-        };
+        src = pkgs.fishPlugins.plugin-git.src;
+#        src = pkgs.fetchFromGitHub {
+#          owner = "jhillyerd";
+#          repo = "plugin-git";
+#          rev = "0.3";
+#          hash = lib.fakeHash;
+#        };
       }
     ];
 
     interactiveShellInit = lib.mkMerge [
       # PATH and CDPATH
       (if hostname == "IT-USA-VF3086" then ''
-        fish_add_path ~/.nix-profile/bin
         set -gx CDPATH . ${homeDir} ${homeDir}/indeed
       '' else ''
-        fish_add_path ~/.nix-profile/bin
         set -gx CDPATH . ${homeDir}
       '')
 
@@ -53,14 +52,14 @@
         (builtins.readFile ../conf/fish/indeed.fish))
 
       # Host-specific config (IT-USA-VF3086)
-      (lib.mkIf (hostname == "IT-USA-VF3086") ''
-        if test -z "$INDEED_ENV_DIR"
-          set -gx INDEED_ENV_DIR "$HOME/env"
-        end
-        if test -e "$INDEED_ENV_DIR/etc/indeedrc"
-          bass source "$INDEED_ENV_DIR/etc/indeedrc"
-        end
-      '')
+#      (lib.mkIf (hostname == "IT-USA-VF3086") ''
+#        if test -z "$INDEED_ENV_DIR"
+#          set -gx INDEED_ENV_DIR "$HOME/env"
+#        end
+#        if test -e "$INDEED_ENV_DIR/etc/indeedrc"
+#          bass source "$INDEED_ENV_DIR/etc/indeedrc"
+#        end
+#      '')
     ];
   };
 }

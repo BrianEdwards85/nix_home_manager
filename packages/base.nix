@@ -5,7 +5,7 @@
   home.packages = with pkgs; [
     bat                         # Cat clone with syntax highlighting
     btop                        # Resource monitor (CPU, memory, disks)
-    byobu                       # Text-based window manager and terminal multiplexer
+#    byobu                       # Text-based window manager and terminal multiplexer
     delta                       # Syntax-highlighting pager for git diffs
     emacs                       # Extensible text editor
     eza                         # Modern replacement for ls
