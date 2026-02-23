@@ -8,11 +8,10 @@
       cat = "bat";
       hms = "home-manager switch --flake ~/.config/home-manager#$hostname";
       hmc = "nvim ~/.config/home-manager";
-      s = "kitten ssh";
       vim = "nvim";
       gg = "lazygit";
       cc = "cursor .";
-      cvm = "alacritty msg create-window --hold -e fish -c 'ssh bedwards.cvm.indeed.net'";
+      cvm = "alacritty msg create-window --hold -e ~/.nix-profile/bin/fish -c 'ssh bedwards.cvm.indeed.net'";
     };
 
     plugins = [
@@ -27,12 +26,6 @@
       {
         name = "plugin-git";
         src = pkgs.fishPlugins.plugin-git.src;
-#        src = pkgs.fetchFromGitHub {
-#          owner = "jhillyerd";
-#          repo = "plugin-git";
-#          rev = "0.3";
-#          hash = lib.fakeHash;
-#        };
       }
     ];
 
@@ -46,6 +39,7 @@
 
       # FZF Tokyo Night theme
       (builtins.readFile ../conf/fish/fzf_tokyonight_storm.fish)
+      "fzf_configure_bindings --directory=\\cf"
 
       # Indeed functions
       (lib.mkIf (hostname == "IT-USA-VF3086" || hostname == "bedwards")

@@ -9,6 +9,7 @@
     delta                       # Syntax-highlighting pager for git diffs
     emacs                       # Extensible text editor
     eza                         # Modern replacement for ls
+    fd                          # Simple, fast and user-friendly alternative to find
     fish                        # Smart and user-friendly command line shell
     fzf                         # Fuzzy finder for command line
     git                         # Distributed version control system
