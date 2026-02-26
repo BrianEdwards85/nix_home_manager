@@ -7,14 +7,14 @@ in
   imports = [
     ./alacritty.nix
     ./eza.nix
-    ./kitty.nix
+#    ./kitty.nix
     ./starship.nix
-    ./zsh.nix
+    ./fish.nix
     ./lazygit.nix
     ./bat.nix
 #  ] ++ lib.optionals (hasFeature == "gui") [
     ./vscode.nix
-    ./wezterm.nix
+#    ./wezterm.nix
     ./zellij.nix
   ];
 }

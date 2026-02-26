@@ -3,6 +3,8 @@
 
 {
   home.packages = with pkgs; [
+    cairo                       # 2D graphics library with support for multiple output devices
+    cairosvg                    # SVG converter based on Cairo
     httpie                      # Command line HTTP client whose goal is to make CLI human-friendly
     jdt-language-server         # Java language server for IDE features
     lazydocker                  # Terminal UI for Docker management

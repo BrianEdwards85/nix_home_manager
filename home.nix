@@ -32,18 +32,18 @@ in
   services.gpg-agent = lib.mkIf (hostname == "IT-USA-VF3086") {
     enable = true;
     enableSshSupport = true;
-    enableZshIntegration = true;
+    enableFishIntegration = true;
     pinentry.package = pkgs.pinentry_mac;
   };
 
 home.file = {
-  ".byobu/.tmux.conf".source = conf/tmux.conf;
   ".config/nvim" = {
     source = conf/nvim;
     recursive = true;
   };
   ".config/eza/theme.yml".source = conf/eza_tokyonight_storm.yml;
   ".config/git/delta".source = conf/git_delta.conf;
+  ".config/fish/conf.d/tokyonight_storm.fish".source = conf/fish/tokyonight_storm.fish;
 #  ".config/bat/themes/tokyonight_storm.tmTheme" = {
 #      source = conf/bat_tokyonight_storm.tmTheme;
 #      onChange = "bat cache --build";
@@ -56,7 +56,7 @@ home.file = {
     EDITOR = "nvim";
   };
 
-  home.shell.enableZshIntegration = true;
+  home.shell.enableFishIntegration = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

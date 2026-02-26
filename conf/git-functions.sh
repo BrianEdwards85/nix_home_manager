@@ -1,3 +1,0 @@
-# Shared git functions
-
-

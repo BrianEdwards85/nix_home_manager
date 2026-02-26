@@ -9,6 +9,7 @@
       show_startup_tips = false;
       session_name = "default";
       attach_to_session = true;
+      default_shell = "fish";
       # Define the theme colors
       themes = {
         tokyonight_storm = {
