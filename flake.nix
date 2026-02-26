@@ -26,6 +26,14 @@
     in
     {
 
+      homeConfigurations."hosaka" = mkHome {
+        system = "x86_64-linux";
+        hostname = "hosaka";
+        username = "bedwards";
+        homeDir = "/home/bedwards";
+        features = [ "dev" ];
+      };
+
       homeConfigurations."wintermute" = mkHome {
         system = "x86_64-linux";
         hostname = "bedwards";
