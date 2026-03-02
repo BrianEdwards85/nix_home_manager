@@ -14,6 +14,23 @@
       cvm = "alacritty msg create-window --hold -e ~/.nix-profile/bin/fish -c 'ssh bedwards.cvm.indeed.net'";
     };
 
+    functions = {
+      assh = ''
+        if test (count $argv) -eq 0
+          echo "Usage: issh <host>"
+          return 1
+        end
+        alacritty msg create-window --hold -e ~/.nix-profile/bin/fish -c "ssh -A $argv[1]"
+      '';
+      issh = ''
+        if test (count $argv) -eq 0
+          echo "Usage: issh <host>"
+          return 1
+        end
+        alacritty msg create-window --hold -e ~/.nix-profile/bin/fish -c "ssh $argv[1]"
+      '';
+    };
+
     plugins = [
       {
         name = "bass";
@@ -30,6 +47,13 @@
     ];
 
     interactiveShellInit = lib.mkMerge [
+      # Fix SSH agent forwarding for reconnected zellij sessions
+      ''
+        if test -n "$SSH_CONNECTION"; and test -e "$HOME/.ssh/ssh_auth_sock"
+          set -gx SSH_AUTH_SOCK "$HOME/.ssh/ssh_auth_sock"
+        end
+      ''
+
       # PATH and CDPATH
       (if hostname == "IT-USA-VF3086" then ''
         set -gx CDPATH . ${homeDir} ${homeDir}/indeed
