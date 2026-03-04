@@ -26,7 +26,7 @@
     in
     {
 
-      homeConfigurations."hosaka" = mkHome {
+      homeConfigurations."hosaka.io" = mkHome {
         system = "x86_64-linux";
         hostname = "hosaka";
         username = "bedwards";
