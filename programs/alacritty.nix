@@ -4,6 +4,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
+      window.option_as_alt = "Both";
       mouse.bindings = [
         { mouse = "Middle"; action = "Paste"; }
       ];

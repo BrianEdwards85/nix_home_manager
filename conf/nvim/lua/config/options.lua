@@ -5,3 +5,4 @@
 local opt = vim.opt
 
 opt.mouse = ""
+-- statuscolumn is set per-buffer in autocmds.lua
