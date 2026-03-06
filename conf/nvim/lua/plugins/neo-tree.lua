@@ -2,6 +2,7 @@ return {
   "nvim-neo-tree/neo-tree.nvim",
   opts = {
     filesystem = {
+      group_empty_dirs = true,
       commands = {
         git_add = function(state)
           local node = state.tree:get_node()
