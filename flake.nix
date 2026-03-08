@@ -67,11 +67,11 @@
       };
 
       homeConfigurations."docker" = mkHome {
-        system = "x86_64-linux";
+        system = "aarch64-linux";
         hostname = "docker";
         username = "dev";
         homeDir = "/home/dev";
-        features = [ "dev" ];
+        features = [ "dev" "ldev" ];
       };
     };
 }

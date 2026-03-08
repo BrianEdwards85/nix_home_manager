@@ -6,15 +6,13 @@ in
 {
   imports = [
     ./alacritty.nix
+    ./bat.nix
     ./eza.nix
-#    ./kitty.nix
-    ./starship.nix
     ./fish.nix
     ./lazygit.nix
-    ./bat.nix
-#  ] ++ lib.optionals (hasFeature == "gui") [
-    ./vscode.nix
-#    ./wezterm.nix
+    ./starship.nix
     ./zellij.nix
+  ] ++ lib.optionals (hasFeature == "gui") [
+    ./vscode.nix
   ];
 }

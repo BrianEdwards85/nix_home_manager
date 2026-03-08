@@ -9,6 +9,7 @@ in
     ./base.nix                                            # Always imported
   ]
   ++ lib.optionals (hasFeature "dev") [ ./dev.nix ]
+  ++ lib.optionals (hasFeature "ldev") [ ./linux_dev.nix ]
   ++ lib.optionals (hasFeature "gui") [ ./gui.nix ]
   ++ lib.optionals (hasFeature "ham") [ ./ham.nix ]
   ++ lib.optionals (hasFeature "home") [ ./home.nix ]

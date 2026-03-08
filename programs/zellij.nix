@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, hostname, lib, ... }:
 
 {
   programs.zellij = {
@@ -7,8 +7,13 @@
 #    exitShellOnExit = true;
     settings = {
       web_server = true;
-      show_startup_tips = false;
+    } // lib.optionalAttrs (hostname == "docker") {
+      session_name = "docker";
+      share_session_on_web_server = true;
+    } // lib.optionalAttrs (hostname != "docker") {
       session_name = "default";
+    } // {
+      show_startup_tips = false;
       attach_to_session = true;
       default_shell = "fish";
       # Define the theme colors
@@ -30,6 +35,11 @@
 
       # Tell Zellij to use the theme defined above
       theme = "tokyonight_storm";
+
+      # Web client font (must be installed on the browser's host machine)
+      web_client = {
+        font = "DroidSansM Nerd Font";
+      };
 
       # Optional: additional UI tweaks
       ui = {
