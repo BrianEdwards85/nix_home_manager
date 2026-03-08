@@ -6,6 +6,7 @@
     enableZshIntegration = true;
 #    exitShellOnExit = true;
     settings = {
+      web_server = true;
       show_startup_tips = false;
       session_name = "default";
       attach_to_session = true;

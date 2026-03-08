@@ -65,5 +65,13 @@
         homeDir = "/Users/bedwards";
         features = [ "indeed" "dev" "gui" "ham" "home" ];
       };
+
+      homeConfigurations."docker" = mkHome {
+        system = "x86_64-linux";
+        hostname = "docker";
+        username = "dev";
+        homeDir = "/home/dev";
+        features = [ "dev" ];
+      };
     };
 }
