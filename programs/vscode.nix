@@ -12,6 +12,11 @@
       "workbench.editor.enablePreview" =  false;
       "workbench.editor.enablePreviewFromQuickOpen" = false;
       "git.confirmSync" = false;
+      "update.mode" = "none";
+      "workbench.editorAssociations" = {
+        "*.md" = "vscode.markdown.preview.editor";
+      };
+      "git.untrackedChanges": "hidden";
     };
     profiles.default.extensions = with pkgs.vscode-extensions; [
       esbenp.prettier-vscode

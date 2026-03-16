@@ -22,6 +22,7 @@
     starship                    # Cross-shell customizable prompt
 #    wezterm                     # GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust
     uutils-coreutils            # Cross-platform Rust rewrite of the GNU coreutils --uutils-coreutils-noprefix
+    yazi                        # Blazing fast terminal file manager written in Rust, based on async I/O
 
     zellij                      # Terminal workspace and multiplexer
   ]

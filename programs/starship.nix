@@ -49,7 +49,8 @@
         read_only_style = "fg:#e3e5e5 bg:#769ff0";
         read_only = " ";
         format = "[ $path ]($style)[$read_only]($read_only_style)";
-        truncation_length = 4;
+        truncation_length = 6;
+        truncate_to_repo = false;
         truncation_symbol = "…/";
         home_symbol = " ";
         substitutions = {
@@ -57,6 +58,7 @@
           "Downloads" = " ";
           "Music" = " ";
           "Pictures" = " ";
+          "indeed" = "\udb80\udf3d ";
         };
       };
 
