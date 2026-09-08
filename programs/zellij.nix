@@ -4,6 +4,7 @@
   programs.zellij = {
     enable = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
 #    exitShellOnExit = true;
     settings = {
       web_server = true;
