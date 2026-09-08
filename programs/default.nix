@@ -12,6 +12,7 @@ in
     ./lazygit.nix
     ./starship.nix
     ./zellij.nix
+    ./zoxide.nix 
   ] ++ lib.optionals (hasFeature "gui") [
     ./vscode.nix
   ];
