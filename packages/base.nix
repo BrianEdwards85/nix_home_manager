@@ -16,8 +16,10 @@
     fzf                         # Fuzzy finder for command line
     git                         # Distributed version control system
     git-worktree-switcher       # Tool to easily switch between git worktrees
-#    helix                       # Modal text editor inspired by Vim/Kakoune
+    helix                       # Modal text editor inspired by Vim/Kakoune
     neovim                      # Hyperextensible Vim-based text editor
+    #openscad                    # 3D parametric model compiler
+    openscad-unstable           # 3D parametric model compiler
     ranger                      # Console file manager with vi keybindings
     starship                    # Cross-shell customizable prompt
 #    wezterm                     # GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust
@@ -25,6 +27,7 @@
     yazi                        # Blazing fast terminal file manager written in Rust, based on async I/O
 
     zellij                      # Terminal workspace and multiplexer
+    zoxide                      # Fast cd command that learns your habits
   ]
   ++ lib.optionals pkgs.stdenv.isLinux [
     unixtools.net-tools         # Network utilities like ifconfig, netstat, route, etc.

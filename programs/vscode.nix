@@ -16,7 +16,7 @@
       "workbench.editorAssociations" = {
         "*.md" = "vscode.markdown.preview.editor";
       };
-      "git.untrackedChanges": "hidden";
+      "git.untrackedChanges" = "hidden";
     };
     profiles.default.extensions = with pkgs.vscode-extensions; [
       esbenp.prettier-vscode

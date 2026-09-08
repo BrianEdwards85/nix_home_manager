@@ -58,7 +58,7 @@
           "Downloads" = " ";
           "Music" = " ";
           "Pictures" = " ";
-          "indeed" = "\udb80\udf3d ";
+          "indeed" = " ";
         };
       };
 

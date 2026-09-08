@@ -11,7 +11,8 @@
       vim = "nvim";
       gg = "lazygit";
       cc = "cursor .";
-      cvm = "alacritty msg create-window -e ~/.nix-profile/bin/fish -c 'ssh bedwards.cvm.indeed.net'";
+      cvm = "alacritty msg create-window --hold -e ~/.nix-profile/bin/fish -c 'ssh bedwards.cvm.indeed.net -tt \'~/.nix-profile/bin/zellij\''";
+      #cvm = "alacritty msg create-window -e ~/.nix-profile/bin/fish -c 'ssh bedwards.cvm.indeed.net'";
       sb = "alacritty msg create-window -e /usr/local/bin/docker exec -it turbo-umbrella-studio-1 /home/dev/.nix-profile/bin/zellij";
     };
 
