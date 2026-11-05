@@ -59,7 +59,7 @@
       };
 
       homeConfigurations."nixos" = mkHome {
-        system = "aarch64-darwin";
+        system = "aarch64-linux";
         hostname = "nix";
         username = "bedwards";
         homeDir = "/home/bedwards";
