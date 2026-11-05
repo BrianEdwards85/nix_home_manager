@@ -58,6 +58,14 @@
         features = [ "dev" "gui" "ham" "home" ];
       };
 
+      homeConfigurations."nixos" = mkHome {
+        system = "aarch64-darwin";
+        hostname = "nix";
+        username = "bedwards";
+        homeDir = "/home/bedwards";
+        features = [ "dev" ];
+      };
+
       homeConfigurations."IT-USA-VF3086" = mkHome {
         system = "aarch64-darwin";
         hostname = "IT-USA-VF3086";
