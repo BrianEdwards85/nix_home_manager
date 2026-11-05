@@ -29,7 +29,7 @@
     zellij                      # Terminal workspace and multiplexer
     zoxide                      # Fast cd command that learns your habits
   ]
-  ++ lib.optionals pkgs.stdenv.isLinux [
+  ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
     unixtools.net-tools         # Network utilities like ifconfig, netstat, route, etc.
   ];
 }

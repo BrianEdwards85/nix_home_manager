@@ -17,6 +17,7 @@
     };
 
     functions = {
+      adc = "alacritty msg create-window -e /usr/local/bin/docker exec -it turbo-umbrella-studio-1 /home/dev/.nix-profile/bin/zellij";
       assh = ''
         if test (count $argv) -eq 0
           echo "Usage: issh <host>"
@@ -54,6 +55,8 @@
         if test -n "$SSH_CONNECTION"; and test -e "$HOME/.ssh/ssh_auth_sock"
           set -gx SSH_AUTH_SOCK "$HOME/.ssh/ssh_auth_sock"
         end
+
+        zoxide init fish | source
       ''
 
       # PATH and CDPATH

@@ -27,10 +27,10 @@
           colorArg = "always";
           pager = "delta --dark --paging=never --syntax-theme=tokyonight_storm";
         };
-        pagers = [
+        diffRenderers = [
           {
             colorArg = "always";
-            pager = "delta --dark --paging=never --syntax-theme=tokyonight_storm";
+            command = "delta --dark --paging=never --syntax-theme=tokyonight_storm";
           }
         ];
         commitPrefix = [
