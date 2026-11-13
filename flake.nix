@@ -74,7 +74,14 @@
         features = [ "indeed" "dev" "gui" "ham" "home" ];
       };
 
-      homeConfigurations."docker" = mkHome {
+      homeConfigurations."docker_x86" = mkHome {
+        system = "x86_64-linux";
+        hostname = "docker";
+        username = "dev";
+        homeDir = "/home/dev";
+        features = [ "dev" "ldev" ];
+      };
+      homeConfigurations."docker_arm" = mkHome {
         system = "aarch64-linux";
         hostname = "docker";
         username = "dev";
