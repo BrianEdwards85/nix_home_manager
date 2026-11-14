@@ -8,7 +8,7 @@
     dolt                        # Relational database with version control and CLI a-la Git
     gh                          # GitHub CLI tool
     httpie                      # Command line HTTP client whose goal is to make CLI human-friendly
-    jdt-language-server         # Java language server for IDE features
+#    jdt-language-server         # Java language server for IDE features
     jq                          # Lightweight and flexible command-line JSON processor
     jqp                         # TUI playground to experiment with jq
     lazydocker                  # Terminal UI for Docker management
