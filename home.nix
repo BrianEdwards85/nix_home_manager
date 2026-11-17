@@ -36,14 +36,14 @@ in
   # Laptop (holds the YubiKey): forward the restricted agent socket to wintermute.
   # Verify local path with `gpgconf --list-dirs agent-extra-socket` and the remote
   # path with `ssh wintermute gpgconf --list-dirs agent-socket`.
-  programs.ssh = lib.mkIf (hostname == "IT-USA-VF3086") {
-    enable = true;
-    enableDefaultConfig = false;
-    settings.wintermute = {
-      ForwardAgent = "no";
-      RemoteForward = "/run/user/1000/gnupg/S.gpg-agent ${homeDir}/.gnupg/S.gpg-agent.extra";
-    };
-  };
+#  programs.ssh = lib.mkIf (hostname == "IT-USA-VF3086") {
+#    enable = true;
+#    enableDefaultConfig = false;
+#    settings.wintermute = {
+#      ForwardAgent = "no";
+#      RemoteForward = "/run/user/1000/gnupg/S.gpg-agent ${homeDir}/.gnupg/S.gpg-agent.extra";
+#    };
+#  };
 
   # wintermute (and laptop): gpg client. No local agent/scdaemon taking the socket;
   # the forwarded agent provides the card. Needs the public key to know the key.
@@ -72,6 +72,7 @@ home.file = {
     '';
     executable = true;
   };
+  ".ssh/nix.config".source = conf/ssh.conf;
 #  ".config/bat/themes/tokyonight_storm.tmTheme" = {
 #      source = conf/bat_tokyonight_storm.tmTheme;
 #      onChange = "bat cache --build";

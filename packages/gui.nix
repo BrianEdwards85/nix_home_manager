@@ -21,7 +21,6 @@
     rectangle
   ]
   ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-    gnupg                       # GNU Privacy Guard encryption
     keymapviz                   # Keyboard layout visualization
     qmk_hid                     # QMK HID device utilities
     terminator                  # Terminal emulator with tiling
