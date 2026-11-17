@@ -25,15 +25,34 @@ in
 
   fonts.fontconfig.enable = true;
 
-  programs.gpg = lib.mkIf (hostname == "IT-USA-VF3086") {
-    enable = true;
-  };
 
   services.gpg-agent = lib.mkIf (hostname == "IT-USA-VF3086") {
     enable = true;
     enableSshSupport = true;
     enableFishIntegration = true;
     pinentry.package = pkgs.pinentry_mac;
+  };
+
+  # Laptop (holds the YubiKey): forward the restricted agent socket to wintermute.
+  # Verify local path with `gpgconf --list-dirs agent-extra-socket` and the remote
+  # path with `ssh wintermute gpgconf --list-dirs agent-socket`.
+  programs.ssh = lib.mkIf (hostname == "IT-USA-VF3086") {
+    enable = true;
+    enableDefaultConfig = false;
+    settings.wintermute = {
+      ForwardAgent = "no";
+      RemoteForward = "/run/user/1000/gnupg/S.gpg-agent ${homeDir}/.gnupg/S.gpg-agent.extra";
+    };
+  };
+
+  # wintermute (and laptop): gpg client. No local agent/scdaemon taking the socket;
+  # the forwarded agent provides the card. Needs the public key to know the key.
+  programs.gpg = lib.mkIf (hostname == "IT-USA-VF3086" || hasFeature "gpgremote") {
+    enable = true;
+    publicKeys = lib.optional (builtins.pathExists ./conf/gpg-pubkey.asc) {
+      source = ./conf/gpg-pubkey.asc;
+      trust = 5; # ultimate
+    };
   };
 
 home.file = {

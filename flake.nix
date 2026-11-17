@@ -39,7 +39,15 @@
         hostname = "bedwards";
         username = "bedwards";
         homeDir = "/home/bedwards";
-        features = [ "dev" ];
+        features = [ "dev" "gpgremote" ];
+      };
+
+      homeConfigurations."term" = mkHome {
+        system = "x86_64-linux";
+        hostname = "term";
+        username = "bedwards";
+        homeDir = "/home/bedwards";
+        features = [ "dev" "ldev" ];
       };
 
       homeConfigurations."bedwards" = mkHome {

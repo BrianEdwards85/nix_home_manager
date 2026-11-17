@@ -30,7 +30,7 @@
     zoxide                      # Fast cd command that learns your habits
   ]
   ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-    uutils-coreutils-noprefix
+#    uutils-coreutils-noprefix
     gnupg                       # GNU Privacy Guard encryption
     unixtools.net-tools         # Network utilities like ifconfig, netstat, route, etc.
   ];
