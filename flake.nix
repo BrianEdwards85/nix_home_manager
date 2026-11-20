@@ -3,98 +3,18 @@
   #https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    import-tree.url = "github:vic/import-tree";
   };
 
-  outputs =
-    { nixpkgs, home-manager, ... }:
-    let
-      # Helper function to create a home configuration
-      mkHome = { system, hostname, homeDir, username, features }:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
-          modules = [ ./home.nix ];
-          extraSpecialArgs = {
-            inherit hostname homeDir username features;
-          };
-        };
-    in
-    {
-
-      homeConfigurations."hosaka" = mkHome {
-        system = "x86_64-linux";
-        hostname = "hosaka";
-        username = "bedwards";
-        homeDir = "/home/bedwards";
-        features = [ "dev" ];
-      };
-
-      homeConfigurations."wintermute" = mkHome {
-        system = "x86_64-linux";
-        hostname = "bedwards";
-        username = "bedwards";
-        homeDir = "/home/bedwards";
-        features = [ "dev" "gpgremote" ];
-      };
-
-      homeConfigurations."term" = mkHome {
-        system = "x86_64-linux";
-        hostname = "term";
-        username = "bedwards";
-        homeDir = "/home/bedwards";
-        features = [ "dev" "ldev" ];
-      };
-
-      homeConfigurations."bedwards" = mkHome {
-        system = "x86_64-linux";
-        hostname = "bedwards";
-        username = "bedwards";
-        homeDir = "/home/bedwards";
-        features = [ "indeed" "dev" ];
-      };
-
-      homeConfigurations."steamdeck" = mkHome {
-        system = "x86_64-linux";
-        hostname = "deck";
-        username = "deck";
-        homeDir = "/home/deck";
-        features = [ "dev" "gui" "ham" "home" ];
-      };
-
-      homeConfigurations."nixos" = mkHome {
-        system = "aarch64-linux";
-        hostname = "nix";
-        username = "bedwards";
-        homeDir = "/home/bedwards";
-        features = [ "dev" ];
-      };
-
-      homeConfigurations."IT-USA-VF3086" = mkHome {
-        system = "aarch64-darwin";
-        hostname = "IT-USA-VF3086";
-        username = "bedwards";
-        homeDir = "/Users/bedwards";
-        features = [ "indeed" "dev" "gui" "ham" "home" ];
-      };
-
-      homeConfigurations."docker_x86" = mkHome {
-        system = "x86_64-linux";
-        hostname = "docker";
-        username = "dev";
-        homeDir = "/home/dev";
-        features = [ "dev" "ldev" ];
-      };
-      homeConfigurations."docker_arm" = mkHome {
-        system = "aarch64-linux";
-        hostname = "docker";
-        username = "dev";
-        homeDir = "/home/dev";
-        features = [ "dev" "ldev" ];
-      };
-    };
+  # Dendritic pattern: every file under ./modules is a flake-parts module.
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
