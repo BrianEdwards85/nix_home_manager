@@ -13,3 +13,14 @@ function gcj -d "Checkout jira/<name> if exists, otherwise checkout <name>"
         git checkout $argv[1]
     end
 end
+
+function dec -d "Enter sandbox"
+    set -l container turbo-umbrella-studio-1
+    set -l dir (string replace -r '^/Users/bedwards/claude-workspace(?=/|$)' '/home/dev/workspace' -- $PWD \
+      | string replace -r '^/Users/bedwards(?=/|$)' '/home/dev')
+    set -l workdir
+    if /usr/local/bin/docker exec $container test -d $dir
+        set workdir -w $dir
+    end
+    /usr/local/bin/docker exec -it $workdir $container /home/dev/.nix-profile/bin/fish
+end
