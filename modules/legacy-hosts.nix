@@ -40,17 +40,6 @@ in
       ];
     };
 
-    homeConfigurations."term" = mkHome {
-      system = "x86_64-linux";
-      hostname = "term";
-      username = "bedwards";
-      homeDir = "/home/bedwards";
-      features = [
-        "dev"
-        "ldev"
-      ];
-    };
-
     homeConfigurations."bedwards" = mkHome {
       system = "x86_64-linux";
       hostname = "bedwards";
@@ -75,14 +64,6 @@ in
       ];
     };
 
-    homeConfigurations."nixos" = mkHome {
-      system = "aarch64-linux";
-      hostname = "nix";
-      username = "bedwards";
-      homeDir = "/home/bedwards";
-      features = [ "dev" ];
-    };
-
     homeConfigurations."IT-USA-VF3086" = mkHome {
       system = "aarch64-darwin";
       hostname = "IT-USA-VF3086";
@@ -94,27 +75,6 @@ in
         "gui"
         "ham"
         "home"
-      ];
-    };
-
-    homeConfigurations."docker_x86" = mkHome {
-      system = "x86_64-linux";
-      hostname = "docker";
-      username = "dev";
-      homeDir = "/home/dev";
-      features = [
-        "dev"
-        "ldev"
-      ];
-    };
-    homeConfigurations."docker_arm" = mkHome {
-      system = "aarch64-linux";
-      hostname = "docker";
-      username = "dev";
-      homeDir = "/home/dev";
-      features = [
-        "dev"
-        "ldev"
       ];
     };
   };
