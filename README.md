@@ -9,9 +9,15 @@ automatically by [import-tree](https://github.com/vic/import-tree). There are no
 - **NixOS servers** (`nixos-26.05`): `hosaka`, `wintermute`, `nixos`.
 
 ```sh
-home-manager switch --flake ~/.config/home-manager#<name>   # the `hms` alias does this
+home-manager switch --flake ~/.config/home-manager#<name>   # what `hms` runs (see below)
 nixos-rebuild switch --flake .#<hostname>                   # servers; Ansible runs this
 ```
+
+`hms` is a fish function that also records the change in git. On `main` with uncommitted changes it
+first moves them to a new branch `<name>_<timestamp>`; on any other branch it stages everything,
+switches, and commits if the switch succeeded (`hms: switch <name> (<timestamp>)`). If the switch
+fails the changes stay staged, uncommitted. Extra arguments go to `home-manager switch`
+(`hms -b backup`). It never pushes.
 
 On a machine with no `home-manager` command yet:
 `nix run github:nix-community/home-manager -- switch --flake .#<name>`.
