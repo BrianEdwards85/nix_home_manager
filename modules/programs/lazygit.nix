@@ -28,9 +28,6 @@
               defaultFgColor = [ "#c0caf5" ];
             };
           };
-          services = {
-            "code.corp.indeed.com" = "gitlab:code.corp.indeed.com";
-          };
           git = {
             paging = {
               colorArg = "always";

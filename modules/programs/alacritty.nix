@@ -4,6 +4,24 @@
     { pkgs, ... }:
 
     {
+      # Open ssh sessions in a new alacritty window.
+      programs.fish.functions = {
+        assh = ''
+          if test (count $argv) -eq 0
+            echo "Usage: assh <host>"
+            return 1
+          end
+          alacritty msg create-window -e ~/.nix-profile/bin/fish -c "ssh -A $argv[1]"
+        '';
+        issh = ''
+          if test (count $argv) -eq 0
+            echo "Usage: issh <host>"
+            return 1
+          end
+          alacritty msg create-window -e ~/.nix-profile/bin/fish -c "ssh $argv[1]"
+        '';
+      };
+
       programs.alacritty = {
         enable = true;
         settings = {

@@ -66,6 +66,7 @@ in
   };
 
   flake.homeConfigurations.hosaka = config.flake.lib.mkHome {
+    name = "hosaka";
     system = "x86_64-linux";
     modules = [ hm.hosaka ];
   };

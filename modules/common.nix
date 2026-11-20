@@ -8,7 +8,6 @@ in
     imports = with hm; [
       base
       base-packages
-      alacritty
       bat
       eza
       fish

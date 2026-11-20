@@ -2,13 +2,17 @@
 {
   # Build a standalone home-manager configuration for a host.
   flake.lib.mkHome =
-    { system, modules }:
+    {
+      name,
+      system,
+      modules,
+    }:
     inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
-      inherit modules;
+      modules = [ { my.homeName = name; } ] ++ modules;
     };
 
   # Build a NixOS server (stable nixpkgs) from the given modules.

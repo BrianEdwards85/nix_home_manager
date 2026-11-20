@@ -32,6 +32,7 @@ in
   };
 
   flake.homeConfigurations.nixos = config.flake.lib.mkHome {
+    name = "nixos";
     system = "aarch64-linux";
     modules = [ hm.nixos ];
   };

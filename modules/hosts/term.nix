@@ -14,6 +14,7 @@ in
   };
 
   flake.homeConfigurations.term = config.flake.lib.mkHome {
+    name = "term";
     system = "x86_64-linux";
     modules = [ hm.term ];
   };

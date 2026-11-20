@@ -5,13 +5,17 @@
     { pkgs, lib, ... }:
 
     {
-      imports = [ config.flake.modules.homeManager.vscode ];
+      imports = with config.flake.modules.homeManager; [
+        alacritty
+        vscode
+      ];
+
+      programs.fish.shellAliases.cc = "cursor .";
 
       home.packages =
         with pkgs;
         [
           #    blender
-          alacritty # Cross-platform, GPU-accelerated terminal emulator
           #    gimp
           #    kitty                       # GPU-accelerated terminal emulator
           inkscape

@@ -14,6 +14,7 @@ in
   };
 
   flake.homeConfigurations.bedwards = config.flake.lib.mkHome {
+    name = "bedwards";
     system = "x86_64-linux";
     modules = [ hm.bedwards ];
   };

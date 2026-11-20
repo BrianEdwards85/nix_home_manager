@@ -15,6 +15,7 @@ in
   };
 
   flake.homeConfigurations.steamdeck = config.flake.lib.mkHome {
+    name = "steamdeck";
     system = "x86_64-linux";
     modules = [ hm.steamdeck ];
   };

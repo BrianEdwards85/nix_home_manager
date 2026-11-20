@@ -25,32 +25,10 @@
 
         shellAliases = {
           cat = "bat";
-          hms = "home-manager switch --flake ~/.config/home-manager#$hostname";
+          hms = "home-manager switch --flake ~/.config/home-manager#${config.my.homeName}";
           hmc = "nvim ~/.config/home-manager";
           vim = "nvim";
           gg = "lazygit";
-          cc = "cursor .";
-          cvm = "alacritty msg create-window --hold -e ~/.nix-profile/bin/fish -c 'ssh bedwards.cvm.indeed.net -tt \'~/.nix-profile/bin/zellij\''";
-          sb = "alacritty msg create-window -e /usr/local/bin/docker exec -it turbo-umbrella-studio-1 /home/dev/.nix-profile/bin/zellij";
-          dec = "/usr/local/bin/docker exec -it turbo-umbrella-studio-1 /home/dev/.nix-profile/bin/fish";
-        };
-
-        functions = {
-          adc = "alacritty msg create-window -e /usr/local/bin/docker exec -it turbo-umbrella-studio-1 /home/dev/.nix-profile/bin/zellij";
-          assh = ''
-            if test (count $argv) -eq 0
-              echo "Usage: issh <host>"
-              return 1
-            end
-            alacritty msg create-window -e ~/.nix-profile/bin/fish -c "ssh -A $argv[1]"
-          '';
-          issh = ''
-            if test (count $argv) -eq 0
-              echo "Usage: issh <host>"
-              return 1
-            end
-            alacritty msg create-window -e ~/.nix-profile/bin/fish -c "ssh $argv[1]"
-          '';
         };
 
         plugins = [

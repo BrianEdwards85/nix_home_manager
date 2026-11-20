@@ -145,6 +145,7 @@ in
   };
 
   flake.homeConfigurations.wintermute = config.flake.lib.mkHome {
+    name = "wintermute";
     system = "x86_64-linux";
     modules = [ hm.wintermute ];
   };

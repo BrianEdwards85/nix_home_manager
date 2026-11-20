@@ -15,7 +15,6 @@
         jq # Lightweight and flexible command-line JSON processor
         jqp # TUI playground to experiment with jq
         lazydocker # Terminal UI for Docker management
-        lazygit # Terminal UI for Git commands
         lazysql # Simple TUI for MySQL/MariaDB databases
         lua-language-server # Lua language server for IDE features
         nixfmt-tree # Nix code formatter (treefmt compatible)

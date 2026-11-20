@@ -25,6 +25,7 @@ in
       (arch: system: {
         name = "docker_${arch}";
         value = config.flake.lib.mkHome {
+          name = "docker_${arch}";
           inherit system;
           modules = [ hm.docker ];
         };
