@@ -3,7 +3,8 @@
 #   - this flake's homeConfigurations.wintermute provides the packages and dotfiles
 #   - SSH on the host's port 2222, and zellij's web client on the proxy network's gateway, port 9999
 #     (Traefik serves it as term.<domain> behind the login gate: roles/term in the Ansible repository)
-#   - /home is a 20 GB volume; the host's ~/workspace (bedwards's home on the host) is shared in as ~/workspace
+#   - /home is a 20 GB volume; the host's ~/workspace (bedwards's home on the host) is shared in at /mnt/workspace (~/workspace links to it),
+#     with ~/.config/home-manager at /mnt/home-manager and /srv/homeassistant/config read-only at /mnt/homeassistant
 #   - the host's Nix store is shared read-only: nothing is installed inside the VM
 { inputs, config, ... }:
 
@@ -27,6 +28,8 @@ in
       # bedwards's workspace on the host. A literal: reading users.users.bedwards.home here would
       # recurse, since NixOS evaluates fileSystems while it works out the users.
       workspace = "/home/bedwards/workspace";
+      homeManagerDir = "/home/bedwards/.config/home-manager";
+      homeAssistantDir = "/srv/homeassistant/config";
     in
     {
       imports = [ inputs.microvm.nixosModules.host ];
@@ -41,8 +44,8 @@ in
       # each VM's files are in /srv/microvm/<name>/
       microvm.stateDir = "/srv/microvm";
 
-      # The workspace is the user's directory on the host, bound under the VM's directory
-      fileSystems."/srv/microvm/term/workspace" = {
+      # The shared directories are bound under the VM's directory, which is what virtiofs serves
+      fileSystems."/srv/microvm/term/mnt/workspace" = {
         device = workspace;
         fsType = "none";
         options = [
@@ -50,10 +53,28 @@ in
           "x-mount.mkdir"
         ];
       };
+      fileSystems."/srv/microvm/term/mnt/home-manager" = {
+        device = homeManagerDir;
+        fsType = "none";
+        options = [
+          "bind"
+          "x-mount.mkdir"
+        ];
+      };
+      fileSystems."/srv/microvm/term/mnt/homeassistant" = {
+        device = homeAssistantDir;
+        fsType = "none";
+        options = [
+          "bind"
+          "ro"
+          "x-mount.mkdir"
+        ];
+      };
       system.activationScripts.termWorkspace = {
         deps = [ "users" ];
         text = ''
           install -d -o bedwards -g users -m 0755 ${workspace}
+          install -d -o bedwards -g users -m 0755 ${homeManagerDir}
         '';
       };
 
@@ -118,8 +139,21 @@ in
                 {
                   proto = "virtiofs";
                   tag = "workspace";
-                  source = "/srv/microvm/term/workspace";
-                  mountPoint = "/workspace";
+                  source = "/srv/microvm/term/mnt/workspace";
+                  mountPoint = "/mnt/workspace";
+                }
+                {
+                  proto = "virtiofs";
+                  tag = "home-manager";
+                  source = "/srv/microvm/term/mnt/home-manager";
+                  mountPoint = "/mnt/home-manager";
+                }
+                {
+                  proto = "virtiofs";
+                  tag = "homeassistant";
+                  source = "/srv/microvm/term/mnt/homeassistant";
+                  mountPoint = "/mnt/homeassistant";
+                  readOnly = true;
                 }
               ];
               volumes = [
@@ -215,7 +249,7 @@ in
               "d /home/.ssh-host 0700 root root -"
               "d ${home} 0700 bedwards users -"
               "d /run/zellij 0700 bedwards users -"
-              "L ${home}/workspace - - - - /workspace"
+              "L ${home}/workspace - - - - /mnt/workspace"
             ];
 
             # the dotfiles of the home-manager configuration, linked into the home directory at every boot
