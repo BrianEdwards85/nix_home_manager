@@ -1,13 +1,33 @@
 {
-  description = "Home Manager configuration of bedwards";
+  description = "Home Manager and NixOS configuration of bedwards";
   #https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone
 
   inputs = {
+    # Unstable: the home-manager configurations (standalone, built by flake.lib.mkHome).
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Stable: the NixOS servers (flake.lib.mkNixos).
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
+    # Provides the `home-manager` command installed on the servers.
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+    # MicroVMs: the terminal sandbox on wintermute (modules/nixos/microvm.nix).
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+    # Disk partitioning for nixos-anywhere installs.
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";

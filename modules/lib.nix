@@ -10,4 +10,14 @@
       };
       inherit modules;
     };
+
+  # Build a NixOS server (stable nixpkgs) from the given modules.
+  flake.lib.mkNixos =
+    { name, modules }:
+    inputs.nixpkgs-stable.lib.nixosSystem {
+      modules = [ { networking.hostName = name; } ] ++ modules;
+    };
+
+  # SSH public keys allowed to log in as the admin accounts.
+  flake.lib.adminKeys = import "${inputs.self}/keys/admin-keys.nix";
 }
