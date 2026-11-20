@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
   # gpg client with the public key. No local agent/scdaemon taking the socket;
   # a forwarded agent (wintermute) or the local one (mac) provides the card.
@@ -7,7 +7,7 @@
       enable = true;
       publicKeys = [
         {
-          source = "${inputs.self}/conf/gpg-pubkey.asc";
+          source = ../../conf/gpg-pubkey.asc;
           trust = 5; # ultimate
         }
       ];

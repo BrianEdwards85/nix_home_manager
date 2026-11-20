@@ -17,7 +17,6 @@ in
         gpg-agent-mac
       ];
       home.username = "bedwards";
-      home.homeDirectory = "/Users/bedwards";
 
       # Launchers: new alacritty windows into the CVM and the Docker Desktop dev container.
       programs.fish.shellAliases = {

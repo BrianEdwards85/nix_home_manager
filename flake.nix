@@ -12,11 +12,6 @@
 
     # Stable: the NixOS servers (flake.lib.mkNixos).
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
-    # Provides the `home-manager` command installed on the servers.
-    home-manager-stable = {
-      url = "github:nix-community/home-manager/release-26.05";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
     # MicroVMs: the terminal sandbox on wintermute (modules/nixos/microvm.nix).
     microvm = {
       url = "github:astro/microvm.nix";

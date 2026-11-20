@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
   flake.modules.homeManager.bat =
 
@@ -10,7 +10,7 @@
         };
         themes = {
           tokyonight_storm = {
-            src = "${inputs.self}/conf/bat_tokyonight_storm.tmTheme";
+            src = ../../conf/bat_tokyonight_storm.tmTheme;
           };
         };
       };

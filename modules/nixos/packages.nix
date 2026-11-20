@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
   flake.modules.nixos.packages =
     # Programs installed for all users.
@@ -7,7 +7,9 @@
     {
       environment.systemPackages = with pkgs; [
         git
-        inputs.home-manager-stable.packages.${pkgs.stdenv.hostPlatform.system}.default
+        # The system-wide command, which the Ansible home_manager role runs to bootstrap
+        # users. From stable nixpkgs; each home also gets its own via programs.home-manager.
+        home-manager
         python3
         rsync
         vim

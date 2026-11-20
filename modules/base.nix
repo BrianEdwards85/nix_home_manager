@@ -2,7 +2,12 @@
 { ... }:
 {
   flake.modules.homeManager.base =
-    { lib, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       # The name of this home's flake output (homeConfigurations.<name>), used by the `hms` alias.
       options.my.homeName = lib.mkOption {
@@ -11,6 +16,11 @@
       };
 
       config = {
+        # Overridable default: /home/<user>, or /Users/<user> on macOS.
+        home.homeDirectory = lib.mkDefault (
+          (if pkgs.stdenv.hostPlatform.isDarwin then "/Users/" else "/home/") + config.home.username
+        );
+
         home.stateVersion = "25.05"; # Please read the comment before changing.
         fonts.fontconfig.enable = true;
         home.sessionVariables.EDITOR = "nvim";

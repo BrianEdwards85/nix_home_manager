@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
   flake.modules.homeManager.fish =
     {
@@ -69,7 +69,7 @@
             }\n"
 
             # FZF Tokyo Night theme
-            (builtins.readFile "${inputs.self}/conf/fish/fzf_tokyonight_storm.fish")
+            (builtins.readFile ../../conf/fish/fzf_tokyonight_storm.fish)
             "fzf_configure_bindings --directory=\\cf"
           ]
           ++ config.my.fish.extraInit
@@ -77,6 +77,6 @@
       };
 
       config.home.file.".config/fish/conf.d/tokyonight_storm.fish".source =
-        "${inputs.self}/conf/fish/tokyonight_storm.fish";
+        ../../conf/fish/tokyonight_storm.fish;
     };
 }

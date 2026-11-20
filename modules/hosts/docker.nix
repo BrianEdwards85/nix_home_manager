@@ -11,7 +11,6 @@ in
       ldev
     ];
     home.username = "dev";
-    home.homeDirectory = "/home/dev";
 
     # Containers share one well-known zellij session on the web server.
     programs.zellij.settings = {

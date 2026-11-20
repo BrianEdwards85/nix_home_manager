@@ -11,7 +11,6 @@ in
       ham
     ];
     home.username = "deck";
-    home.homeDirectory = "/home/deck";
   };
 
   flake.homeConfigurations.steamdeck = config.flake.lib.mkHome {

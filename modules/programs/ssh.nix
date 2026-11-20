@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
   flake.modules.homeManager.ssh = {
     home.file.".ssh/rc" = {
@@ -10,6 +10,6 @@
       '';
       executable = true;
     };
-    home.file.".ssh/nix.config".source = "${inputs.self}/conf/ssh.conf";
+    home.file.".ssh/nix.config".source = ../../conf/ssh.conf;
   };
 }

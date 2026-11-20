@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
   flake.modules.nixos.wireguard =
     # WireGuard server for the private network (10.9.1.0/24); the services' Docker
@@ -14,7 +14,7 @@
       # Public keys live in keys/ at the repo root; the private keys never enter this directory.
       # To add a device: put <name>.pub in keys/ and list it here with its own address.
       # internet = true lets it use this server as its way out to the internet.
-      publicKey = name: lib.removeSuffix "\n" (builtins.readFile "${inputs.self}/keys/${name}.pub");
+      publicKey = name: lib.removeSuffix "\n" (builtins.readFile ../../keys/${name}.pub);
 
       devices = [
         {

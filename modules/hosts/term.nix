@@ -10,7 +10,6 @@ in
       ldev
     ];
     home.username = "bedwards";
-    home.homeDirectory = "/home/bedwards";
   };
 
   flake.homeConfigurations.term = config.flake.lib.mkHome {

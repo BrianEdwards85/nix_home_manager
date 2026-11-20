@@ -3,17 +3,11 @@
 #   - this flake's homeConfigurations.wintermute provides the packages and dotfiles
 #   - SSH on the host's port 2222, and zellij's web client on the proxy network's gateway, port 9999
 #     (Traefik serves it as term.<domain> behind the login gate: roles/term in the Ansible repository)
-#   - /home is a 20 GB volume; the host's /home/bedwards/workspace is shared in as ~/workspace
+#   - /home is a 20 GB volume; the host's ~/workspace (bedwards's home on the host) is shared in as ~/workspace
 #   - the host's Nix store is shared read-only: nothing is installed inside the VM
 { inputs, config, ... }:
 
 let
-  # The uid bedwards has on this host. The shared workspace keeps its host ownership inside the VM,
-  # so the VM's bedwards must have the same uid and gid. Check with `id bedwards`; the term role
-  # in the Ansible repository checks it too (term_user_uid).
-  bedwardsUid = 1001;
-  bedwardsGid = 100;
-
   adminKeys = config.flake.lib.adminKeys;
   # the packages and dotfiles of this home-manager configuration, as built for the VM's user
   hm = config.flake.homeConfigurations.wintermute;
@@ -23,16 +17,33 @@ let
 in
 {
   flake.modules.nixos.microvm =
-    { lib, ... }:
+    { config, lib, ... }:
+    let
+      # The shared workspace keeps its host ownership inside the VM, so the VM's bedwards must have
+      # the host's uid and gid. The uid is pinned in modules/hosts/wintermute.nix (the term role in
+      # the Ansible repository checks it too: term_user_uid); the gid is that of the `users` group.
+      hostUid = config.users.users.bedwards.uid;
+      hostGid = config.users.groups.users.gid;
+      # bedwards's workspace on the host. A literal: reading users.users.bedwards.home here would
+      # recurse, since NixOS evaluates fileSystems while it works out the users.
+      workspace = "/home/bedwards/workspace";
+    in
     {
       imports = [ inputs.microvm.nixosModules.host ];
+
+      assertions = [
+        {
+          assertion = hostUid != null;
+          message = "The term microVM shares bedwards's files, so users.users.bedwards.uid must be pinned on this host.";
+        }
+      ];
 
       # each VM's files are in /srv/microvm/<name>/
       microvm.stateDir = "/srv/microvm";
 
       # The workspace is the user's directory on the host, bound under the VM's directory
       fileSystems."/srv/microvm/term/workspace" = {
-        device = "/home/bedwards/workspace";
+        device = workspace;
         fsType = "none";
         options = [
           "bind"
@@ -42,7 +53,7 @@ in
       system.activationScripts.termWorkspace = {
         deps = [ "users" ];
         text = ''
-          install -d -o bedwards -g users -m 0755 /home/bedwards/workspace
+          install -d -o bedwards -g users -m 0755 ${workspace}
         '';
       };
 
@@ -57,7 +68,11 @@ in
 
       microvm.vms.term = {
         config =
-          { pkgs, ... }:
+          { config, pkgs, ... }:
+          let
+            # bedwards's home inside the VM
+            home = config.users.users.bedwards.home;
+          in
           {
             imports = [ inputs.microvm.nixosModules.microvm ];
 
@@ -167,7 +182,7 @@ in
             programs.fish.enable = true;
             users.users.bedwards = {
               isNormalUser = true;
-              uid = bedwardsUid;
+              uid = hostUid;
               description = "Brian Edwards";
               shell = pkgs.fish;
               extraGroups = [ "wheel" ];
@@ -175,7 +190,7 @@ in
               # the programs of the home-manager configuration
               packages = [ hm.config.home.path ];
             };
-            users.groups.users.gid = bedwardsGid;
+            users.groups.users.gid = hostGid;
             # a throwaway sandbox: the key is the only way in, and root in it is one command away
             security.sudo.wheelNeedsPassword = false;
 
@@ -198,9 +213,9 @@ in
             # /home is a volume mounted after the system's own set-up, so its directories are made here
             systemd.tmpfiles.rules = [
               "d /home/.ssh-host 0700 root root -"
-              "d /home/bedwards 0700 bedwards users -"
+              "d ${home} 0700 bedwards users -"
               "d /run/zellij 0700 bedwards users -"
-              "L /home/bedwards/workspace - - - - /workspace"
+              "L ${home}/workspace - - - - /workspace"
             ];
 
             # the dotfiles of the home-manager configuration, linked into the home directory at every boot
@@ -216,7 +231,7 @@ in
                 User = "bedwards";
               };
               script = ''
-                ${pkgs.coreutils}/bin/cp -rsfT ${hm.activationPackage}/home-files /home/bedwards
+                ${pkgs.coreutils}/bin/cp -rsfT ${hm.activationPackage}/home-files ${home}
               '';
             };
 
@@ -234,7 +249,7 @@ in
                 "/run/current-system/sw"
               ];
               environment = {
-                HOME = "/home/bedwards";
+                HOME = home;
                 USER = "bedwards";
                 SHELL = "/run/current-system/sw/bin/fish";
                 LANG = "C.UTF-8";
@@ -245,7 +260,7 @@ in
               };
               serviceConfig = {
                 User = "bedwards";
-                ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /home/bedwards/.config/zellij /home/bedwards/.local/share/zellij";
+                ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${home}/.config/zellij ${home}/.local/share/zellij";
                 # What a login gives the shell, which a service does not get: NixOS's environment (PATH with the
                 # user's profiles, terminfo, locale, the session variables) and home-manager's own session
                 # variables. The panes inherit it, so fish there behaves as it does in an SSH login.

@@ -62,7 +62,6 @@ in
       dev
     ];
     home.username = "bedwards";
-    home.homeDirectory = "/home/bedwards";
   };
 
   flake.homeConfigurations.hosaka = config.flake.lib.mkHome {

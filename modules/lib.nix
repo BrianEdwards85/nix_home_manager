@@ -23,5 +23,5 @@
     };
 
   # SSH public keys allowed to log in as the admin accounts.
-  flake.lib.adminKeys = import "${inputs.self}/keys/admin-keys.nix";
+  flake.lib.adminKeys = import ../keys/admin-keys.nix;
 }

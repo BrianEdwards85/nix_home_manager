@@ -10,7 +10,6 @@ in
       indeed
     ];
     home.username = "bedwards";
-    home.homeDirectory = "/home/bedwards";
   };
 
   flake.homeConfigurations.bedwards = config.flake.lib.mkHome {

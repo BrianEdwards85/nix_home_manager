@@ -28,7 +28,6 @@ in
       dev
     ];
     home.username = "bedwards";
-    home.homeDirectory = "/home/bedwards";
   };
 
   flake.homeConfigurations.nixos = config.flake.lib.mkHome {
