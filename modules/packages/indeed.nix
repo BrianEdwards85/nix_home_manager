@@ -1,15 +1,14 @@
 { config, ... }:
 {
   flake.modules.homeManager.indeed =
-{ pkgs, ... }:
+    { pkgs, ... }:
 
-{
-  imports = [ config.flake.modules.homeManager.indeed-fish ];
+    {
+      imports = [ config.flake.modules.homeManager.indeed-fish ];
 
-  home.packages = with pkgs; [
-    # Add Indeed-specific packages here
-#    claude-code
-  ];
-}
-;
+      home.packages = with pkgs; [
+        # Add Indeed-specific packages here
+        #    claude-code
+      ];
+    };
 }

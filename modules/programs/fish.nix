@@ -8,7 +8,19 @@
       ...
     }:
     {
-      programs.fish = {
+      options.my.fish.extraCdPath = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [ ];
+        description = "Directories added to CDPATH after . and the home directory.";
+      };
+
+      options.my.fish.extraInit = lib.mkOption {
+        type = lib.types.listOf lib.types.lines;
+        default = [ ];
+        description = "Fish snippets appended at the end of this module's interactive init.";
+      };
+
+      config.programs.fish = {
         enable = true;
 
         shellAliases = {
@@ -56,26 +68,37 @@
           }
         ];
 
-        interactiveShellInit = lib.mkMerge [
-          # Fix SSH agent forwarding for reconnected zellij sessions
-          ''
-            if test -n "$SSH_CONNECTION"; and test -e "$HOME/.ssh/ssh_auth_sock"
-              set -gx SSH_AUTH_SOCK "$HOME/.ssh/ssh_auth_sock"
-            end
+        interactiveShellInit = lib.mkMerge (
+          [
+            # Fix SSH agent forwarding for reconnected zellij sessions
+            ''
+              if test -n "$SSH_CONNECTION"; and test -e "$HOME/.ssh/ssh_auth_sock"
+                set -gx SSH_AUTH_SOCK "$HOME/.ssh/ssh_auth_sock"
+              end
 
-            zoxide init fish | source
-          ''
+              zoxide init fish | source
+            ''
 
-          # PATH and CDPATH (the indeed module adds its own entries)
-          "set -gx CDPATH . ${config.home.homeDirectory}\n"
+            # CDPATH
+            "set -gx CDPATH ${
+              lib.concatStringsSep " " (
+                [
+                  "."
+                  config.home.homeDirectory
+                ]
+                ++ config.my.fish.extraCdPath
+              )
+            }\n"
 
-          # FZF Tokyo Night theme
-          (builtins.readFile "${inputs.self}/conf/fish/fzf_tokyonight_storm.fish")
-          "fzf_configure_bindings --directory=\\cf"
-        ];
+            # FZF Tokyo Night theme
+            (builtins.readFile "${inputs.self}/conf/fish/fzf_tokyonight_storm.fish")
+            "fzf_configure_bindings --directory=\\cf"
+          ]
+          ++ config.my.fish.extraInit
+        );
       };
 
-      home.file.".config/fish/conf.d/tokyonight_storm.fish".source =
+      config.home.file.".config/fish/conf.d/tokyonight_storm.fish".source =
         "${inputs.self}/conf/fish/tokyonight_storm.fish";
     };
 }

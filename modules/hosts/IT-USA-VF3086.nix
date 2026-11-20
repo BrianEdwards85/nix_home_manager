@@ -5,7 +5,7 @@ let
 in
 {
   flake.modules.homeManager.IT-USA-VF3086 =
-    { config, lib, ... }:
+    { config, ... }:
     {
       imports = with hm; [
         common
@@ -20,9 +20,7 @@ in
       home.homeDirectory = "/Users/bedwards";
 
       # Also search ~/indeed when cd-ing.
-      programs.fish.interactiveShellInit = lib.mkAfter ''
-        set -gx CDPATH . ${config.home.homeDirectory} ${config.home.homeDirectory}/indeed
-      '';
+      my.fish.extraCdPath = [ "${config.home.homeDirectory}/indeed" ];
     };
 
   flake.homeConfigurations.IT-USA-VF3086 = config.flake.lib.mkHome {

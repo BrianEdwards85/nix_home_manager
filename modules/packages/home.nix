@@ -4,12 +4,11 @@
 { ... }:
 {
   flake.modules.homeManager.home-automation =
-{ pkgs, lib, ... }:
+    { pkgs, lib, ... }:
 
-{
-  home.packages = with pkgs; [
-    esphome                     # ESP8266/ESP32 home automation firmware
-  ];
-}
-;
+    {
+      home.packages = with pkgs; [
+        esphome # ESP8266/ESP32 home automation firmware
+      ];
+    };
 }

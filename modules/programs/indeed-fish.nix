@@ -3,6 +3,6 @@
 { inputs, ... }:
 {
   flake.modules.homeManager.indeed-fish = {
-    programs.fish.interactiveShellInit = builtins.readFile "${inputs.self}/conf/fish/indeed.fish";
+    my.fish.extraInit = [ (builtins.readFile "${inputs.self}/conf/fish/indeed.fish") ];
   };
 }
