@@ -1,0 +1,13 @@
+# Who can decrypt what. Edit a secret with `sops secrets/<host>.yaml` (needs the YubiKey).
+# After changing a key list: sops updatekeys secrets/<host>.yaml
+keys:
+  # Admin: the GPG key on the YubiKey (conf/gpg-pubkey.asc).
+  - &admin 7B552AE820934E96D3BFA24C27E847F6C471A897
+  # A server's age key is its SSH host key:
+  #   ssh-keyscan -t ed25519 <host> | ssh-to-age
+  - &wintermute age1rxa4980zu4xp2scw4r52hpy6k5cmu3zsm92nu0ft2xe0medzg4rq3fj08x
+creation_rules:
+  - path_regex: secrets/wintermute\.yaml$
+    key_groups:
+      - pgp: [*admin]
+        age: [*wintermute]

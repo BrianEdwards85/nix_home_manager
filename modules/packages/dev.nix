@@ -21,6 +21,8 @@
         prettier # Code formatter
         rainfrog # Database management TUI for Postgres
         rustup # Rust toolchain installer and manager
+        sops # Edit and encrypt secrets files (see secrets/ and .sops.yaml)
+        ssh-to-age # Convert an SSH host key to the age key sops encrypts to
         uv # Extremely fast Python package installer and resolver, written in Rust
       ];
     };

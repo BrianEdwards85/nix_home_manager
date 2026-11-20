@@ -14,6 +14,7 @@ in
       users
       packages
       docker
+      sops
     ];
   };
 }

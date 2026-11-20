@@ -12,6 +12,11 @@
 
     # Stable: the NixOS servers (flake.lib.mkNixos).
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
+    # Secrets for the servers, encrypted in the repo (modules/nixos/sops.nix).
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
     # MicroVMs: the terminal sandbox on wintermute (modules/nixos/microvm.nix).
     microvm = {
       url = "github:astro/microvm.nix";

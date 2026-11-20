@@ -8,7 +8,7 @@ in
   # The home server. Its DNS names are under free-side.us; the system's own
   # hostname is wintermute.
   flake.modules.nixos.wintermute =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       imports = [
         inputs.disko.nixosModules.disko
@@ -35,10 +35,14 @@ in
       # (modules/nixos/microvm.nix). Check with `id bedwards` on the machine before switching.
       users.users.bedwards.uid = 1001;
 
-      # TEMPORARY: a console login for the first boot, in case the network does not
-      # come up. Applies only when the user is first created. TODO: remove after
-      # the first successful SSH login, then rebuild.
-      users.users.bedwards.initialHashedPassword = "$y$j9T$.2t09nJNATU2KuGt8U7e4/$D.ERXCTf9nZnm4i9mEyWDbU70eC1K.RUwh3iUZL6L89";
+      # bedwards's password, for console logins (SSH is key-only). The hash is encrypted in
+      # secrets/wintermute.yaml and decrypted at activation with this machine's SSH host key; it is
+      # needed early because users are created from it (neededForUsers).
+      sops.secrets."bedwards-password" = {
+        sopsFile = ../../secrets/wintermute.yaml;
+        neededForUsers = true;
+      };
+      users.users.bedwards.hashedPasswordFile = config.sops.secrets."bedwards-password".path;
 
       # Set once at install. Do NOT change it afterwards.
       system.stateVersion = "26.05";

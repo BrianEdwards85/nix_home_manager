@@ -29,6 +29,7 @@ On a machine with no `home-manager` command yet:
 | `hosts/<name>/` | generated `hardware-configuration.nix` and `disko.nix`. **Outside `modules/` on purpose**: they are plain NixOS modules, not flake-parts modules, and import-tree would load them wrongly |
 | `conf/` | dotfiles and themes, referenced by relative path |
 | `keys/` | public keys (WireGuard peers, admin SSH keys) |
+| `secrets/`, `.sops.yaml` | encrypted secrets (sops-nix) and who can decrypt them |
 
 ## Conventions
 
@@ -49,6 +50,24 @@ On a machine with no `home-manager` command yet:
    nixos-anywhere), a `flake.modules.nixos.<name>` module, and a `flake.nixosConfigurations.<name>`
    built with `flake.lib.mkNixos`. Use `hosaka.nix` as the template. New files must be
    `git add`ed before the flake can see them.
+
+## Secrets
+
+`sops` and `ssh-to-age` come with the `dev` module (on machines without it, prefix with
+`nix shell nixpkgs#sops nixpkgs#ssh-to-age -c`). Server secrets are encrypted with [sops-nix](https://github.com/Mic92/sops-nix) in
+`secrets/<host>.yaml`. Admin recipient: the GPG key on the YubiKey. Each server's recipient: an age
+key derived from its SSH host key. A server decrypts at activation, so only ciphertext is deployed.
+
+```sh
+sops secrets/wintermute.yaml                         # edit (needs the YubiKey)
+ssh-keyscan -t ed25519 <host> | ssh-to-age           # a host's age key
+sops updatekeys secrets/<host>.yaml                  # after changing .sops.yaml
+```
+
+To add a secret, put it in the host's file and declare it where it's used
+(`modules/nixos/sops.nix` has the pattern); to add a host's secrets, add its age key and a
+`creation_rules` entry to `.sops.yaml`. Secrets files must be `git add`ed like any other file.
+Use `nixos-rebuild test` first: a secret that cannot be decrypted fails activation.
 
 ## Checking changes
 
