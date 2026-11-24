@@ -2,6 +2,7 @@
 let
   hm = config.flake.modules.homeManager;
   nx = config.flake.modules.nixos;
+  automationKeys = config.flake.lib.automationKeys;
 in
 {
   # Settings for this server only. Shared settings live in modules/nixos.
@@ -15,6 +16,9 @@ in
         ../../hosts/wintermute/disko.nix
         ../../hosts/wintermute/hardware-configuration.nix
       ];
+
+      # Semaphore (a container on this server) logs in as ansible with its own key, in addition to the admin keys
+      users.users.ansible.openssh.authorizedKeys.keys = automationKeys;
 
       # UEFI, so the shared systemd-boot (modules/nixos/boot.nix) is used as is.
 

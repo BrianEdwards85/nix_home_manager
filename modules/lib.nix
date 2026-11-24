@@ -24,4 +24,7 @@
 
   # SSH public keys allowed to log in as the admin accounts.
   flake.lib.adminKeys = import ../keys/admin-keys.nix;
+
+  # SSH public keys for unattended automation, for the ansible account on the hosts that ask for them.
+  flake.lib.automationKeys = import ../keys/automation-keys.nix;
 }
