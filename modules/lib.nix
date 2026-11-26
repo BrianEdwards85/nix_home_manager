@@ -22,6 +22,13 @@
       modules = [ { networking.hostName = name; } ] ++ modules;
     };
 
+  # Build a NixOS server on nixos-unstable, for the hardware that stable does not boot yet (the Raspberry Pi 5, modules/hosts/print.nix).
+  flake.lib.mkNixosUnstable =
+    { name, modules }:
+    inputs.nixpkgs.lib.nixosSystem {
+      modules = [ { networking.hostName = name; } ] ++ modules;
+    };
+
   # SSH public keys allowed to log in as the admin accounts.
   flake.lib.adminKeys = import ../keys/admin-keys.nix;
 

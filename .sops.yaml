@@ -12,3 +12,13 @@ creation_rules:
     key_groups:
       - pgp: [*admin, *admin429F]
         age: [*wintermute]
+
+# The print server (modules/nixos/print-tls.nix) keeps two secrets in secrets/print.yaml, which it decrypts with its SSH host key. Fill in after its first
+# deploy, then uncomment the key and the rule, and run `sops secrets/print.yaml`:
+#   ssh-keyscan -t ed25519 print.free-side.us | ssh-to-age
+#   - &print age1...
+# and under creation_rules:
+#   - path_regex: secrets/print\.yaml$
+#     key_groups:
+#       - pgp: [*admin, *admin429F]
+#         age: [*print]

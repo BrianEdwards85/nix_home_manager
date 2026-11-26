@@ -28,6 +28,12 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    # The Raspberry Pi 5 board support (modules/hosts/print.nix).
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
