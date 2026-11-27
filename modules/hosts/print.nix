@@ -1,5 +1,6 @@
 { inputs, config, ... }:
 let
+  hm = config.flake.modules.homeManager;
   nx = config.flake.modules.nixos;
 in
 {
