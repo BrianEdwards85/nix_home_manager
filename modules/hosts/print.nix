@@ -24,6 +24,11 @@ in
       users.groups.docker = { };
       users.groups.networkmanager = { };
 
+      # No TPM on a Pi. With the systemd initrd, nixpkgs adds the module tpm-crb to the initrd, and the Pi kernel (linux-rpi) does not have it, so
+      # building the initrd failed with "modprobe: FATAL: Module tpm-crb not found"
+      boot.initrd.systemd.tpm2.enable = false;
+      systemd.tpm2.enable = false;
+
       # The microSD card: logs live in RAM (read them with journalctl while it runs), /tmp is in RAM, and there is compressed swap in RAM
       services.journald.settings.Journal = {
         Storage = "volatile";
@@ -31,6 +36,15 @@ in
       };
       boot.tmp.useTmpfs = true;
       zramSwap.enable = true;
+
+      # Host metrics for Prometheus on wintermute (the scrape job is prometheus_node_targets in the prometheus role). No Docker here, so the exporter
+      # is a plain service; the port is open to the local network, like CUPS
+      services.prometheus.exporters.node = {
+        enable = true;
+        port = 9100;
+        enabledCollectors = [ "systemd" ];
+        openFirewall = true;
+      };
 
       # Set once at install. Do NOT change it afterwards.
       system.stateVersion = "26.05";
@@ -48,8 +62,7 @@ in
       packages
       print
       printing
-      # After the first deploy: the Pi's SSH host key in .sops.yaml and secrets/print.yaml made (see docs/print.md in the Ansible repository), then
-      # print-tls
+      # print-tls is left out on purpose: no TLS on this server (local network only)
     ];
   };
 }
