@@ -65,4 +65,18 @@ in
       # print-tls is left out on purpose: no TLS on this server (local network only)
     ];
   };
+
+  flake.modules.homeManager.print = {
+    imports = with hm; [
+      common
+      dev
+    ];
+    home.username = "bedwards";
+  };
+
+  flake.homeConfigurations.print = config.flake.lib.mkHome {
+    name = "print";
+    system = "aarch64-linux";
+    modules = [ hm.print ];
+  };
 }
